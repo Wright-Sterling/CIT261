@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>CIT 261 Fluency Evidence | J. Sterling Wright | BYU-Idaho</title>
+        <meta name="description" content="Topic fluency page for Sterling Wright in CIT 261: Mobile Application Development at BYU-Idaho">
+        <link rel="stylesheet" href="../styles/normalize.css">
+        <link rel="stylesheet" href="../styles/main.css">
+    </head>
+    <body>
+        <header>
+        </header>
+        <main>
+            <h2>CIT 261 - Fluency Evidence: JavaScript Objects</h2>
+            <h3>Constructors:</h3>
+            <pre>
+                <code>
+var myFirstObject = new Object();
+var mySecondObject = {};
+var myThirdObject = {
+    volume: "Book of Mormon",
+    book: "Moroni",
+    chapter: "10",
+    verses: "3-5"
+}
+                </code>
+            </pre>
+            <button onclick="testConstructors()">Run the Constructors</button>
+            <br>myFirstObject:
+            <div id="firstObject"></div>
+            <br>mySecondObject:
+            <div id="secondObject"></div>
+            <br>myThirdObject:
+            <div id="thirdObjectVol"></div>
+            <div id="thirdObjectBook"></div>
+            <div id="thirdObjectChap"></div>
+            <div id="thirdObjectVerse"></div>
+            <h3>Properties:</h3>
+            <pre>
+                <code>
+myFirstObject.name = "Sterling";
+mySecondObject["temperature"] = 47.3;
+myThirdObject.volume = "New Testament"
+myThirdObject.book = "John"
+myThirdObject["chapter"] = "1"
+myThirdObject["verses"] = "1"                </code>
+            </pre>
+            <button onclick="testProperties()">Demonstrate the Properties</button>
+            <br>myFirstObject:
+            <div id="firstObject2"></div>
+            <br>mySecondObject:
+            <div id="secondObject2"></div>
+            <br>myThirdObject:
+            <div id="thirdObjectVol2"></div>
+            <div id="thirdObjectBook2"></div>
+            <div id="thirdObjectChap2"></div>
+            <div id="thirdObjectVerse2"></div>
+            <h3>Methods:</h3>
+            <pre>
+                <code>
+var generalConference = {
+    month: "April",
+    location: "Salt Lake City",
+    daysUntil: function () {
+        var today = new Date();
+        var conf = new Date(today.getFullYear(), 3, 6);
+        const one_day = 1000*60*60*24;
+        return Math.ceil((conf.getTime()-today.getTime())/one_day);
+    }
+}
+               </code>
+            </pre>
+            <button onclick="testMethods()">Demonstrate the Methods</button>
+            <br>General Conference Month:
+            <div id="conferenceMonth"></div>
+            <br>General Conference Location:
+            <div id="conferenceLocation"></div>
+            <br>Days Until General Conference:
+            <div id="conferenceUntil"></div>
+            <h3>Multiple Instances:</h3>
+            <pre>
+                <code>
+// Preparing for multiple instances of an object
+var classMates = [];
+function ClassMate(lastName, firstName, expertise) {
+    this.lastName = lastName,
+    this.firstName = firstName,
+    this.expertise = expertise,
+    this.helloString = function () {
+        return "Hail, " + this.firstName + " " + this.lastName + 
+        ", master of " + this.expertise;
+    }
+}
+
+// Create an array of objects
+classMates.push(new ClassMate("Wright", "Sterling", "napping"));
+classMates.push(new ClassMate("Doe", "John", "Java"));
+classMates.push(new ClassMate("Torvalds", "Linus", "Linux"));
+               </code>
+            </pre>
+            <button onclick="testInstances()">Demonstrate the Instances</button>
+            <br>First Instance:
+            <div id="instance1"></div>
+            <br>Second Instance:
+            <div id="instance2"></div>
+            <br>Third Instance:
+            <div id="instance3"></div>
+        </main>
+        <footer>
+            &copy;2019 J. Sterling Wright, Virgina - 
+            <a href="http://www.byui.edu/online">BYU-Idaho Online Learning</a>
+        </footer>
+        <script src="jsobjects.js"></script>
+    </body>
+</html>

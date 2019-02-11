@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>CIT 261 Fluency Evidence | J. Sterling Wright | BYU-Idaho</title>
+        <meta name="description" content="Topic fluency page for Sterling Wright in CIT 261: Mobile Application Development at BYU-Idaho">
+        <link rel="stylesheet" href="../styles/normalize.css">
+        <link rel="stylesheet" href="../styles/main.css">
+    </head>
+    <body>
+        <header>
+        </header>
+        <main>
+            <h2>CIT 261 - Fluency Evidence: JavaScript</h2>
+            <h3>Loops, Conditional Statements:</h3>
+            <pre>
+                <code>
+for(var i=0; i&lt;list.length; i++){
+    if(list[i]%2 == 0) {
+        evens++;
+    }
+}
+                </code>
+            </pre>
+            <h3>Functions: All code is implemented in functions.</h3>
+            <h3>Arrays:</h3>
+            <pre>
+                <code>
+var builtArray = new Array(howBig);
+for (var i=0; i&lt;=howBig; i++) {
+    builtArray[i] = Math.floor(Math.random() * 500);
+    displayArray += "&lt;br&gt;"+builtArray[i];
+}
+                </code>
+            </pre>
+            <button onclick="testFunction()">Run the Functions</button>
+            <br>Test Array:
+            <div id="outputArray"></div>
+            <br>Evens:
+            <div id="outputEvens"></div>
+            <br>Multiplier:
+            <div id="multiplier"></div>
+            Multiplied:
+            <div id="outputMultiplied"></div>
+        </main>
+        <footer>
+            &copy;2019 J. Sterling Wright, Virgina - 
+            <a href="http://www.byui.edu/online">BYU-Idaho Online Learning</a>
+        </footer>
+        <script src="jsfluency.js"></script>
+    </body>
+</html>
