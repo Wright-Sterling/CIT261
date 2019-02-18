@@ -15,11 +15,44 @@
             <!--There will eventually be a navigation menu here -->
         </nav>
         <main>
-            <h2>CIT 261 - Fluency Evidence</h2>
+            <h2>CIT 261 - Fluency Evidence - DOM Manipulation</h2>
+            <p id ='bigchange'>This sample text can really change!</p> 
+            <div>
+            <button id="b_bigchange"
+            onclick="js_bigchange()">Style</button>
+            </div>
+            <form id="f_form1" onsubmit="js_getFormFields()">
+                First name: <input type="text" name="fname" value="Fred"><br>
+                Last name: <input type="text" name="lname" value="Flintstone"><br>
+                <input type="submit" value="Submit">
+            </form>
+            <table id="t_table1" border="1">
+                <tr><td>Row1 cell1</td>
+                <td>Row1 cell2</td></tr>
+                <tr><td>Row2 cell1</td>
+                <td>Row2 cell2</td></tr>
+            </table><br>
+            <input type="button" onclick="js_insert_Row()" value="Insert row">
+            <table id="t_table2" border="1">
+            <tr><td>Row1 cell1</td>
+            <td>Row1 cell2</td></tr>
+            <tr><td>Row2 cell1</td>
+            <td>Row2 cell2</td></tr>
+            <tr><td>Row3 cell1</td>
+            <td>Row3 cell2</td></tr>
+            </table>
+            <form>
+                <input type="button" onclick="js_changeTable()" value="Change content">
+            </form>
+            <p>[<a href="#" onMouseOver="js_highlight()" onMouseOut="js_unHighlight()">On mouse over here bold words of the following paragraph will be highlighted</a>]</p> 
+            <h2><strong>ELDER DAVID A. BEDNAR</strong></h2>
+            "As <strong>learners</strong>, you and I are to <strong>act</strong> and be <strong>doers</strong> of the word and not simply <strong>hearers</strong> who are only acted upon. Are you and I <strong>agents</strong> who <strong>act and seek</strong> learning by faith, or are we waiting to be <strong>taught</strong> and <strong>acted upon</strong>? We are all to be <strong>anxiously</strong> engaged in <strong>asking, seeking</strong>, and <strong>knocking</strong>."
+            Seek Learning by Faith, <strong>Address to CES Educators</strong>, 2007 
         </main>
         <footer>
             &copy;2019 J. Sterling Wright, Virgina - 
             <a href="http://www.byui.edu/online">BYU-Idaho Online Learning</a>
         </footer>
+        <script src="dom.js"></script>
     </body>
 </html>
