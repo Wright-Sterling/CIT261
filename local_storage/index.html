@@ -16,10 +16,67 @@
         </nav>
         <main>
             <h2>CIT 261 - Fluency Evidence - Local Storage</h2>
+            <pre>
+                <code>
+//Finally took time to really learn difference between var, let, and const
+//let and const have block scope. const cannot have a new value assigned
+//var has function scope
+const form = document.querySelector('form');
+const ul = document.querySelector('ul');
+const button = document.querySelector('button');
+const input = document.getElementById('item');
+let itemsArray = localStorage.getItem('items') ? 
+    JSON.parse(localStorage.getItem('items')) : [];
+
+localStorage.setItem('items', JSON.stringify(itemsArray));
+const data = JSON.parse(localStorage.getItem('items'));
+
+const liBuilder = (text) => {
+    const li = document.createElement('li');
+    li.textContent = text;
+    ul.appendChild(li);
+}
+
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    itemsArray.push(input.value);
+    localStorage.setItem('items', JSON.stringify(itemsArray));
+    liBuilder(input.value);
+    input.value = "";
+});
+
+data.forEach(item => {
+    liMaker(item);
+});
+
+button.addEventListener('click', function () {
+    localStorage.clear();
+    while (ul.firstChild) {
+    ul.removeChild(ul.firstChild);
+    }
+    itemsArray = [];
+});
+                </code>
+            </pre>
+            <div class="item_list">
+                <h2>Items Stored Locally</h2>
+                Type in field to add entries to local storage
+                <form>
+                  <input id="item" type="text" placeholder="New">
+                </form>
+            
+                <h3>Items</h3>
+                <ul></ul>
+            
+                <button>Delete All</button>
+              </div>
+            
         </main>
         <footer>
             &copy;2019 J. Sterling Wright, Virgina - 
             <a href="http://www.byui.edu/online">BYU-Idaho Online Learning</a>
         </footer>
+        <script src="local_storage.js"></script>
     </body>
 </html>
