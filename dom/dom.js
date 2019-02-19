@@ -40,25 +40,18 @@ function js_getFormFields()
   {
    if (x.elements[i].value!='Submit')
     {  
-        console.log(x.elements[i].value);
-//        var t=document.getElementById('t_table1').rows[parseInt(i,10)].cells;
-//        t[parseInt(1,10)].innerHTML=x.elements[i].value;
 		window.alert(x.elements[i].value);
      }  
    }
 }
 
-function js_showFormFields()
-{
-	
-}
 function js_insert_Row()
 {
-var x=document.getElementById('t_table1').insertRow(0);
-var y = x.insertCell(0);
-var z = x.insertCell(1);
-y.innerHTML="New Cell1";
-z.innerHTML="New Cell2";
+	var x=document.getElementById('t_table1').insertRow(0);
+	var y = x.insertCell(0);
+	var z = x.insertCell(1);
+	y.innerHTML="New Cell1";
+	z.innerHTML="New Cell2";
 }
 
 function js_changeTable()
