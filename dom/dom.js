@@ -40,11 +40,18 @@ function js_getFormFields()
   {
    if (x.elements[i].value!='Submit')
     {  
-      console.log(x.elements[i].value);
+        console.log(x.elements[i].value);
+//        var t=document.getElementById('t_table1').rows[parseInt(i,10)].cells;
+//        t[parseInt(1,10)].innerHTML=x.elements[i].value;
+		window.alert(x.elements[i].value);
      }  
    }
 }
 
+function js_showFormFields()
+{
+	
+}
 function js_insert_Row()
 {
 var x=document.getElementById('t_table1').insertRow(0);
@@ -56,9 +63,9 @@ z.innerHTML="New Cell2";
 
 function js_changeTable()
 {
-rn = window.prompt("Input the Row number(0,1,2)", "0");
-cn = window.prompt("Input the Column number(0,1)","0");
-content = window.prompt("Input the Cell content");  
-var x=document.getElementById('t_table2').rows[parseInt(rn,10)].cells;
-x[parseInt(cn,10)].innerHTML=content;
+    rn = window.prompt("Input the Row number(0,1,2)", "0");
+    cn = window.prompt("Input the Column number(0,1)","0");
+    content = window.prompt("Input the Cell content");  
+    var x=document.getElementById('t_table2').rows[parseInt(rn,10)].cells;
+    x[parseInt(cn,10)].innerHTML=content;
 }
