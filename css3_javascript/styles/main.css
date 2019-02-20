@@ -1,0 +1,80 @@
+/* CIT 261 - Assignment Portal CSS Template */
+
+/* * is a wildcard referring to all elements. */
+* { margin: 0; box-sizing: border-box; } 
+
+body { 
+    font-size: 16px; 
+    line-height: 32px;
+    font-family: sans-serif;
+    color: black;
+}
+
+h1 {
+/*    font-size: 2.0rem; */
+    font-size: 2.0rem;
+    color: white;
+}
+
+h2 {
+/*    font-size: 1.5rem; */
+    font-size: 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid #bbb;
+}
+
+h3 {
+/*    font-size: 1.5rem; */
+    font-size: 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid #bbb;
+}
+
+h4 {
+        font-size: var(--h4-font-size);
+        text-align: var(--h4-align);
+        border-bottom: 1px solid #bbb;
+    }
+    
+.highlight {
+    color: white;
+    background-color: black;
+    padding: 10px;
+    width: 250px;
+    text-align: center;
+  }
+  
+header, main, footer {
+    margin: 1.25rem auto;
+    padding: .5rem;
+    max-width: 850px;
+}
+
+header, footer, footer a {
+    text-align: center;
+    background-color: darkslategray;
+    color: whitesmoke;
+}
+
+header img {
+    width: 300;
+    height: auto;
+    float: right;
+}
+
+pre code {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+  padding: 20px;
+  margin: auto;
+}
+
+footer {
+/*    font-size: 0.5rem; */
+    font-size: 0.75rem;
+ }
+
+.style1 {
+    margin: 0 auto; border: 1px solid #bbb; padding: 5px; background-color: #eee; line-height: 1.5em;
+}
