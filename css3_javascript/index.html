@@ -17,13 +17,74 @@
         <main>
             <h2>CIT 261 - Fluency Evidence - CSS3 and JavaScript</h2>
             <h3>Apply an Existing CSS Style</h3>
-            <div id="HLT"></div>
+            <pre>
+                <code>
+function applyStyle(){
+    var hlight = document.querySelector('#highlightThis');
+    hlight.setAttribute('class', 'highlight');
+    }
+                </code>
+            </pre>
             <div id="highlightThis">This text is highlighted via JavaScript!</div>
+            <button onclick="applyStyle()">Apply Style</button>
             <h3>Set CSS Variables from JavaScript</h3>
+            <pre>
+                <code>
+function setCssVariables(){
+    const h4 = document.querySelectorAll('h4');
+    const alignment = ['left','center','right'];
+    const ai = Math.floor(Math.random() * 3);
+    const fs = (Math.floor((Math.random() * 300)+20)/100) + 'em';
+    document.querySelector('#h4Size').innerHTML = "%lth4%gtFont Size: " + fs + 
+        "%lt/h4%gt";
+    document.querySelector('#h4Align').innerHTML = "%lth4%gtText Alignment: " + 
+        alignment[ai] + "%lt/h4%gt";
+    for (i = 0; i < h4.length; i++) {
+        h4[i].style.setProperty('--h4-font-size',fs);
+        h4[i].style.setProperty('--h4-align',alignment[ai]);
+    }
+}
+                </code>
+            </pre>
             <h4>Size and alignment of the h4 tag is set via JavaScript!</h4>
             <div id='h4Size'></div>
             <div id='h4Align'></div>
             <button onclick="setCssVariables()"/>Change Values</button>
+            <h3>Change Style on Mouseover</h3>
+            <pre>
+            	<code>
+//Create a 'global' list of all bold items
+var bold_Tags;
+window.onload = js_getBoldTags();
+ 
+// Collect all &ltstrong&gt tags
+function js_getBoldTags() 
+{
+  bold_Tags = document.getElementsByTagName('strong'); 
+}
+// iterate all bold tags and change color  
+function js_highlight() 
+{
+   for (var i=0; i&ltbold_Tags.length; i++)
+   {                                                    
+    bold_Tags[i].style.color = "green";
+    }
+}
+
+// On mouse out highlighted words become black
+function js_unHighlight()
+{
+  for (var i=0; i&ltbold_Tags.length; i++) 
+  {
+       bold_Tags[i].style.color = "black";
+  }
+}
+				</code>
+			</pre>
+            <p>[<a href="#" onMouseOver="js_highlight()" onMouseOut="js_unHighlight()">On mouse over here bold words of the following paragraph will be highlighted</a>]</p> 
+            <h2><strong>ELDER DAVID A. BEDNAR</strong></h2>
+            "As <strong>learners</strong>, you and I are to <strong>act</strong> and be <strong>doers</strong> of the word and not simply <strong>hearers</strong> who are only acted upon. Are you and I <strong>agents</strong> who <strong>act and seek</strong> learning by faith, or are we waiting to be <strong>taught</strong> and <strong>acted upon</strong>? We are all to be <strong>anxiously</strong> engaged in <strong>asking, seeking</strong>, and <strong>knocking</strong>."
+            Seek Learning by Faith, <strong>Address to CES Educators</strong>, 2007 
         </main>
         <footer>
             &copy;2019 J. Sterling Wright, Virgina - 

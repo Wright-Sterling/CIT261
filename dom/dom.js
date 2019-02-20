@@ -1,30 +1,3 @@
-//Create a 'global' list of all bold items
-var bold_Tags;
-window.onload = js_getBoldTags();
- 
-// Collect all <strong> tags
-function js_getBoldTags() 
-{
-  bold_Tags = document.getElementsByTagName('strong'); 
-}
-// iterate all bold tags and change color  
-function js_highlight() 
-{
-   for (var i=0; i<bold_Tags.length; i++)
-   {                                                    
-    bold_Tags[i].style.color = "green";
-    }
-}
-
-// On mouse out highlighted words become black
-function js_unHighlight()
-{
-  for (var i=0; i<bold_Tags.length; i++) 
-  {
-       bold_Tags[i].style.color = "black";
-  }
-}
-
 function js_bigchange() 
 {
 //font styles changed by JavaScript:
