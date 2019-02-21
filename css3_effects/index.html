@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>CIT 261 Fluency Evidence | J. Sterling Wright | BYU-Idaho</title>
+        <meta name="description" content="Topic fluency page for Sterling Wright in CIT 261: Mobile Application Development at BYU-Idaho">
+        <link rel="stylesheet" href="styles/normalize.css">
+        <link rel="stylesheet" href="styles/main.css">
+    </head>
+    <body>
+        <header>
+        </header>
+        <nav>
+            <!--There will eventually be a navigation menu here -->
+        </nav>
+        <main>
+            <h2>CIT 261 - Fluency Evidence - CSS3 Effects Triggered by JavaScript</h2>
+            <h3>Transform & Transition</h3>
+                CSS
+                <pre>
+                    <code>
+.circle {
+    display: inline-block;
+    width: 33%;   
+    border-radius: 50%;
+    height: 40px;
+    margin: 30px auto;
+    width: 40px;
+    background: #60D4C8;
+}
+
+.circle.scale {
+    transform: scale(2);
+    transition: all 300ms;
+}
+
+.circle.move {
+    transform: translate(2em);
+    transition: ease, 300ms;
+}
+
+.box {
+    display: inline-block;
+    margin: 30px auto;
+    height: 40px;
+    width: 40px;
+    background-color: blue;
+}
+
+.box.rotate {
+    transform: rotate(300deg);
+    transition: transform 0.5s ease-out;    
+    }
+                    </code>
+                </pre>
+                JavaScript
+                <pre>
+                    <code>
+function scaleCircle() {
+    let circle = document.getElementsByClassName('circle')[0];
+    let button = document.getElementById('scaleButton');
+    if(button.innerHTML==="Scale") {
+        circle.classList.add('scale');
+        button.innerHTML="Reset";
+    } else {
+        circle.classList.remove('scale');
+        button.innerHTML="Scale";
+    }
+}
+
+function rotateBox() {
+    let box = document.getElementsByClassName('box')[0];
+    let button = document.getElementById('rotateButton');
+    if(button.innerHTML==="Rotate") {
+        box.classList.add('rotate');
+        button.innerHTML="Reset";
+    } else {
+        box.classList.remove('rotate');
+        button.innerHTML="Rotate";
+    }
+}
+
+function moveCircle() {
+    let circle = document.getElementsByClassName('circle')[1];
+    let button = document.getElementById('moveButton');
+    if(button.innerHTML==="Move") {
+        circle.classList.add('move');
+        button.innerHTML="Reset";
+    } else {
+        circle.classList.remove('move');
+        button.innerHTML="Move";
+    }
+}
+                    </code>
+                </pre>
+                <div class="circle"></div>
+                <button id="scaleButton" onclick="scaleCircle()">Scale</button>
+                <div class="box"></div>
+                <button id="rotateButton" onclick="rotateBox()">Rotate</button>
+                <div class="circle"></div>
+                <button id="moveButton" onclick="moveCircle()">Move</button>
+            <h3>Animation</h3>
+            </main>
+        <footer>
+            &copy;2019 J. Sterling Wright, Virgina - 
+            <a href="http://www.byui.edu/online">BYU-Idaho Online Learning</a>
+        </footer>
+        <script src="css3_effects.js"></script>
+    </body>
+</html>
