@@ -33,3 +33,15 @@ function moveCircle() {
         button.innerHTML="Move";
     }
 }
+
+function moveBar() {
+    let bar = document.getElementsByClassName('bar')[0];
+    let button = document.getElementById('barButton');
+    if(button.innerHTML==="Pause") {
+        bar.classList.add('paused');
+        button.innerHTML="Play";
+    } else {
+        bar.classList.remove('paused');
+        button.innerHTML="Pause";
+    }
+}

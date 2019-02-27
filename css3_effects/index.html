@@ -101,6 +101,46 @@ function moveCircle() {
                 <div class="circle"></div>
                 <button id="moveButton" onclick="moveCircle()">Move</button>
             <h3>Animation</h3>
+            CSS
+            <pre>
+                <code>
+@keyframes lr-bounce {
+    from {left: 0px;}
+    to {left: 90%}
+}
+
+.bar {
+    animation: lr-bounce 2s infinite alternate;
+    position: relative;
+    border: 2px blue;
+    width: 50px;
+    height: 20px;
+    background: rgb(100,100,255);
+}
+
+.bar.paused {
+    animation-play-state: paused;
+}
+                </code>
+            </pre>
+            JavaScript
+            <pre>
+                <code>
+function moveBar() {
+    let bar = document.getElementsByClassName('bar')[0];
+    let button = document.getElementById('barButton');
+    if(button.innerHTML==="Pause") {
+        bar.classList.add('paused');
+        button.innerHTML="Play";
+    } else {
+        bar.classList.remove('paused');
+        button.innerHTML="Pause";
+    }
+}
+                </code>
+            </pre>
+            <div class="bar"></div>
+            <button id="barButton" onclick="moveBar()">Pause</button>
             </main>
         <footer>
             &copy;2019 J. Sterling Wright, Virgina - 

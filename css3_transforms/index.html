@@ -15,11 +15,110 @@
             <!--There will eventually be a navigation menu here -->
         </nav>
         <main>
-            <h2>CIT 261 - Fluency Evidence</h2>
+            <h2>CIT 261 - Fluency Evidence - CSS3 Transforms Triggered by JavaScript</h2>
+            <h3>Transform & Transition</h3>
+                CSS
+                <pre>
+                    <code>
+.circle {
+    display: inline-block;
+    width: 33%;   
+    border-radius: 50%;
+    height: 40px;
+    margin: 30px auto;
+    width: 40px;
+    background: #60D4C8;
+}
+
+.circle.scale {
+    transform: scale(2);
+    transition: all 300ms;
+}
+
+.circle.move {
+    transform: translate(2em);
+    transition: ease, 300ms;
+}
+
+.box {
+    display: inline-block;
+    margin: 30px auto;
+    height: 40px;
+    width: 40px;
+    background-color: blue;
+}
+
+.box.rotate {
+    transform: rotate(300deg);
+    transition: transform 0.5s ease-out;    
+    }
+                    </code>
+                </pre>
+                JavaScript
+                <pre>
+                    <code>
+function scaleCircle() {
+    let circle = document.getElementsByClassName('circle')[0];
+    let button = document.getElementById('scaleButton');
+    if(button.innerHTML==="Scale") {
+        circle.classList.add('scale');
+        button.innerHTML="Reset";
+    } else {
+        circle.classList.remove('scale');
+        button.innerHTML="Scale";
+    }
+}
+
+function rotateBox() {
+    let box = document.getElementsByClassName('box')[0];
+    let button = document.getElementById('rotateButton');
+    if(button.innerHTML==="Rotate") {
+        box.classList.add('rotate');
+        button.innerHTML="Reset";
+    } else {
+        box.classList.remove('rotate');
+        button.innerHTML="Rotate";
+    }
+}
+
+function moveCircle() {
+    let circle = document.getElementsByClassName('circle')[1];
+    let button = document.getElementById('moveButton');
+    if(button.innerHTML==="Move") {
+        circle.classList.add('move');
+        button.innerHTML="Reset";
+    } else {
+        circle.classList.remove('move');
+        button.innerHTML="Move";
+    }
+}
+                    </code>
+                </pre>
+                <div class="circle"></div>
+                <button id="scaleButton" onclick="scaleCircle()">Scale</button>
+                <div class="box"></div>
+                <button id="rotateButton" onclick="rotateBox()">Rotate</button>
+                <div class="box"></div>
+                <button id="skewButton" onclick="skewBox()">Skew</button>
+                <div class="circle"></div>
+                <button id="moveButton" onclick="moveCircle()">Move</button>
+                <div class="container">
+                    <div class="cube pers650 pov150">
+                      <div class="face front">1</div>
+                      <div class="face back">2</div>
+                      <div class="face right">3</div>
+                      <div class="face left">4</div>
+                      <div class="face top">5</div>
+                      <div class="face bottom">6</div>
+                    </div>
+                  </div>
+                  <button id="changePerspectiveButton" onclick="changePerspective()">Stretch</button>
+                  <button id="changeViewpointButton" onclick="changeViewpoint()">Change Viewpoint</button>      
         </main>
         <footer>
             &copy;2019 J. Sterling Wright, Virgina - 
             <a href="http://www.byui.edu/online">BYU-Idaho Online Learning</a>
         </footer>
+        <script src="css3_transforms.js"></script>
     </body>
 </html>
