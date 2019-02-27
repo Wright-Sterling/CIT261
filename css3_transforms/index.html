@@ -16,7 +16,6 @@
         </nav>
         <main>
             <h2>CIT 261 - Fluency Evidence - CSS3 Transforms Triggered by JavaScript</h2>
-            <h3>Transform & Transition</h3>
                 CSS
                 <pre>
                     <code>
@@ -52,6 +51,96 @@
     transform: rotate(300deg);
     transition: transform 0.5s ease-out;    
     }
+
+    .box.skew {
+        transform: skewx(25deg) translatex(25px);
+        transform-origin: bottom left;
+    }
+    
+    /* Shorthand classes for different perspective values */
+    .pers250 {
+        perspective: 250px;
+    }
+      
+    .pers350 {
+        perspective: 350px;
+    }
+      
+    .pers500 {
+        perspective: 500px;
+    }
+      
+    .pers650 {
+        perspective: 650px;
+    }
+    
+    .pov-tl {
+        perspective-origin: top left;
+    }
+    
+    .pov150 {
+        perspective-origin: 150% 150%;
+    }
+    
+    /* Define the container div, the cube div, and a generic face */
+    .container {
+        width: 200px;
+        height: 200px;
+        margin: 75px 0 0 75px;
+        border: none;
+    }
+      
+    .cube {
+        width: 100%;
+        height: 100%;
+        backface-visibility: visible;
+        transform-style: preserve-3d;
+    }
+      
+    .face {
+        display: block;
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border: none;
+        line-height: 100px;
+        font-family: sans-serif;
+        font-size: 60px;
+        color: white;
+        text-align: center;
+    }
+      
+    /* Define each face based on direction */
+    .front {
+        background: rgba(0, 0, 0, 0.3);
+        transform: translateZ(50px);
+    }
+      
+    .back {
+        background: rgba(0, 255, 0, 1);
+        color: black;
+        transform: rotateY(180deg) translateZ(50px);
+    }
+      
+    .right {
+        background: rgba(196, 0, 0, 0.7);
+        transform: rotateY(90deg) translateZ(50px);
+    }
+      
+    .left {
+        background: rgba(0, 0, 196, 0.7);
+        transform: rotateY(-90deg) translateZ(50px);
+    }
+      
+    .top {
+        background: rgba(196, 196, 0, 0.7);
+        transform: rotateX(90deg) translateZ(50px);
+    }
+      
+    .bottom {
+        background: rgba(196, 0, 196, 0.7);
+        transform: rotateX(-90deg) translateZ(50px);
+    }  
                     </code>
                 </pre>
                 JavaScript
@@ -81,6 +170,18 @@ function rotateBox() {
     }
 }
 
+function skewBox() {
+    let box = document.getElementsByClassName('box')[1];
+    let button = document.getElementById('skewButton');
+    if(button.innerHTML==="Skew") {
+        box.classList.add('skew');
+        button.innerHTML="Reset";
+    } else {
+        box.classList.remove('skew');
+        button.innerHTML="Skew";
+    }
+}
+
 function moveCircle() {
     let circle = document.getElementsByClassName('circle')[1];
     let button = document.getElementById('moveButton');
@@ -92,7 +193,34 @@ function moveCircle() {
         button.innerHTML="Move";
     }
 }
-                    </code>
+
+function changePerspective() {
+    let cube = document.getElementsByClassName('cube')[0];
+    let button = document.getElementById('changePerspectiveButton');
+    if(button.innerHTML==="Stretch") {
+        cube.classList.remove('pers650')
+        cube.classList.add('pers250');
+        button.innerHTML="Reset";
+    } else {
+        cube.classList.remove('pers250');
+        cube.classList.add('pers650');
+        button.innerHTML="Stretch";
+    }
+}
+
+function changeViewpoint() {
+    let cube = document.getElementsByClassName('cube')[0];
+    let button = document.getElementById('changeViewpointButton');
+    if(button.innerHTML==="Change Viewpoint") {
+        cube.classList.remove('pov150');
+        cube.classList.add('pov-tl');
+        button.innerHTML="Reset";
+    } else {
+        cube.classList.remove('pov-tl');
+        cube.classList.add('pov150');
+        button.innerHTML="Change Viewpoint";
+    }
+}                    </code>
                 </pre>
                 <div class="circle"></div>
                 <button id="scaleButton" onclick="scaleCircle()">Scale</button>
