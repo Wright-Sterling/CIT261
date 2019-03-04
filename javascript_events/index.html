@@ -15,11 +15,66 @@
             <!--There will eventually be a navigation menu here -->
         </nav>
         <main>
-            <h2>CIT 261 - Fluency Evidence</h2>
+            <h2>CIT 261 - Fluency Evidence - JavaScript Events</h2>
+            <pre>
+                <code>
+/* Set up all the listeners */
+window.addEventListener("click",mouseCoords, true);
+document.getElementsByClassName("box")[0].addEventListener("mouseover",colorBox);
+document.getElementsByClassName("box")[0].addEventListener("mouseout",colorBox);
+var boxColor = "blue";
+
+function justNumbers(c) {
+    // Assigns keyCode if charCode is null
+    let thisCode=c.charCode ? c.charCode : c.keyCode;
+    if (thisCode&lt48||thisCode&gt57) {
+        return false; // Not a number key
+    }
+    return true;
+}
+
+function mouseCoords(event) {
+    let mX=event.clientX;
+    let mY=event.clientY;
+    document.getElementById("mouseX").innerHTML=mX;
+    document.getElementById("mouseY").innerHTML=mY;
+}
+
+function colorBox(event) {
+    let firstBox=document.getElementsByClassName("box")[0];
+    if (boxColor == "blue") {
+        firstBox.classList.add("red");
+        boxColor="red";
+    }else{
+        firstBox.classList.remove("red");
+        boxColor="blue";
+    }
+}
+                </code>
+            </pre>
+            This field only accepts numbers
+            <form>
+                <input id='numbers-only' type=text value=""
+                    onkeypress="javascript:return justNumbers(event)"/>
+            </form>
+            Click the mouse button anytime and see its coordinates
+            <table>
+                <tr>
+                    <td>Mouse X:</td>
+                    <td id="mouseX"></td>
+                </tr>
+                <tr>
+                    <td>Mouse Y:</td>
+                    <td id="mouseY"></td>
+                </tr>
+            </table>
+            Mouseover this square to turn it red
+            <div class="box" id="mouseOverBox"></div>
         </main>
         <footer>
             &copy;2019 J. Sterling Wright, Virgina - 
             <a href="http://www.byui.edu/online">BYU-Idaho Online Learning</a>
         </footer>
+        <script src="javascript_events.js"></script>
     </body>
 </html>
