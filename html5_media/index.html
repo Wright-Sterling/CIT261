@@ -15,11 +15,39 @@
             <!--There will eventually be a navigation menu here -->
         </nav>
         <main>
-            <h2>CIT 261 - Fluency Evidence</h2>
+            <h2>CIT 261 - Fluency Evidence - HTML5 Media Tags</h2>
+            <pre>
+                <code>
+function playVideo() {
+    let demoVideo = document.getElementById("video");
+    demoVideo.textTracks[0].mode = "showing";
+    demoVideo.play();
+}
+
+function noCaptions() {
+    let demoVideo = document.getElementById("video");
+    demoVideo.textTracks[0].mode = "hidden";
+    demoVideo.play();
+}
+                </code>
+            </pre>
+            Play some audio
+            <audio controls source src="media/audioDemo.mp3" type="audio/mpeg">
+                Audio tag is not supported in this browser.
+            </audio>
+            <div></div>
+            <button onclick="playVideo()">Play a video</button>
+            <video id="video" controls width="400" height="300">
+                <source src="media/videoDemo720.mp4" type="video/mp4" poster preload>
+                <track kind="subtitles" src="media/demoVideo.vtt" srclang="en-US" default>
+                Video tag is not supported in this browser.
+            </video>
+            <button onclick="noCaptions()">Play video without captions</button>
         </main>
         <footer>
             &copy;2019 J. Sterling Wright, Virgina - 
             <a href="http://www.byui.edu/online">BYU-Idaho Online Learning</a>
         </footer>
+        <script src="html5_media.js"></script>
     </body>
 </html>
