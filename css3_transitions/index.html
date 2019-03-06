@@ -15,11 +15,74 @@
             <!--There will eventually be a navigation menu here -->
         </nav>
         <main>
-            <h2>CIT 261 - Fluency Evidence</h2>
-        </main>
+            <h2>CIT 261 - Fluency Evidence - CSS3 Transitions</h2>
+                CSS
+                <pre>
+                    <code>
+text.right {
+    transform: translateX(500px);
+}
+
+.text.ease {
+    transition: transform 0.75s ease;
+}
+
+.text.ease-in {
+    transition: transform 0.75s ease-in;
+}
+
+.text.ease-out {
+    transition: transform 0.75s ease-out;
+}
+
+.text.ease-in-out {
+    transition: transform 0.75s ease-in-out;
+}
+
+.text.linear {
+    transition: transform 0.75s linear;
+}
+
+#textHTML {
+    font-family: monospace;
+}
+                    </code>
+                </pre>
+                JavaScript
+                <pre>
+                    <code>
+var counter=0;
+var position="left";
+var transitions = ["ease", "ease-in", "ease-out", "ease-in-out", "linear"];
+
+function moveText() {
+    var txt = document.getElementsByClassName('text')[0];
+    var button = document.getElementById('myButton');
+    txt.classList.remove(transitions[counter==0 ? transitions.length-1 : counter-1]);
+        if(position=="left") {
+            txt.classList.add('right');
+            position="right";
+        } else {
+            txt.classList.remove('right');
+            position="left";
+        }
+        txt.classList.add(transitions[counter]);
+        document.getElementById('textHTML').innerHTML = 
+            "transition: transform 0.75s "+ transitions[counter]+";";
+        counter++;
+        if (counter == transitions.length) counter=0;
+        button.innerHTML=transitions[counter];
+}
+                </code>
+                </pre>
+            <div class="text">Watch me!</div>
+            <button id="myButton" onclick="moveText()">ease</button>
+            <div id="textHTML"></div>
+            </main>
         <footer>
             &copy;2019 J. Sterling Wright, Virgina - 
             <a href="http://www.byui.edu/online">BYU-Idaho Online Learning</a>
         </footer>
+        <script src="css3_transitions.js"></script>
     </body>
 </html>

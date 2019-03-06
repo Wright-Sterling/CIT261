@@ -15,11 +15,220 @@
             <!--There will eventually be a navigation menu here -->
         </nav>
         <main>
-            <h2>CIT 261 - Fluency Evidence</h2>
+            <h2>CIT 261 - Fluency Evidence - CSS3 Animations</h2>
+            <h3>CSS</h3>
+            <pre>
+                <code>
+.circle {
+    display: inline-block;
+    width: 33%;   
+    border-radius: 50%;
+    height: 40px;
+    margin: 30px auto;
+    width: 40px;
+    background: #60D4C8;
+}
+
+.circle.scale {
+    transform: scale(2);
+    transition: all 300ms;
+}
+
+.circle.move {
+    transform: translate(2em);
+    transition: ease, 300ms;
+}
+
+.box {
+    display: inline-block;
+    margin: 30px auto;
+    height: 40px;
+    width: 40px;
+    background-color: blue;
+}
+
+.box.rotate {
+    transform: rotate(300deg);
+    transition: transform 0.5s ease-out;    
+    }
+
+@keyframes lr-bounce {
+    from {left: 0px;}
+    to {left: 90%}
+}
+
+.bar {
+    animation: lr-bounce 2s infinite alternate;
+    position: relative;
+    border: 2px blue;
+    width: 50px;
+    height: 20px;
+    background: rgb(100,100,255);
+}
+
+.bar.paused {
+    animation-play-state: paused;
+}
+
+.ball {
+    width: 140px;
+    height: 300px;
+    position: relative;
+    left: 50%;
+    top: 35%;
+    margin-left: -70px;
+    z-index: 100;
+    transform: scale(1);
+    transition: all 5s linear 0s;
+}
+
+.ball:active {
+    transform: scale(0);
+}
+
+.sphere {
+    width: 140px;
+    height: 140px;
+    border-radius: 70px;
+    background: linear-gradient(top,  rgba(187,187,187,1) 0%,rgba(119,119,119,1) 99%);
+    box-shadow: inset 0 -5px 15px rgba(255,255,255,0.4), 
+                inset -2px -1px 40px rgba(0,0,0,0.4), 
+                0 0 1px #000;
+    position: absolute;
+    top: 0;
+    z-index: 11;	
+    animation: bounce 1s infinite;
+}
+
+.sphere.paused {
+    animation-play-state: paused;
+}
+
+.sphere::after {
+    content: "";
+    width: 80px; 
+    height: 40px; 
+    position: absolute;
+    left: 30px;
+    top: 10px;
+    z-index: 10;
+    background: linear-gradient(top,  
+        rgba(232,232,232,1) 0%,rgba(232,232,232,1) 1%,rgba(255,255,255,0) 100%);
+    border-radius: 40px / 20px;	
+}
+
+.sphereShadow {
+    width: 60px;
+    height: 75px;
+    position: absolute;
+    z-index: 10;
+    bottom: 0;
+    left: 50%;
+    margin-left: -30px;
+    background: rgba(20, 20, 20, .1);
+    box-shadow: 0px 0 20px 35px rgba(20,20,20,.1);
+    border-radius: 30px / 40px;
+    transform: scaleY(.3);
+    animation: shrink 1s infinite;
+}
+
+.sphereShadow.paused {
+    animation-play-state: paused;
+}
+
+@keyframes bounce {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: 140px;
+        height: 140px;
+    }
+    55% {
+        top: 160px; 
+        height: 120px; 
+        border-radius: 70px / 60px;
+    }
+    65% {
+        top: 120px; 
+        height: 140px; 
+        border-radius: 70px;
+    }
+    95% {
+        top: 0;
+    }
+    100% {
+        top: 0;
+    }
+}
+
+@keyframes shrink {
+    0% {
+        bottom: 0;
+        margin-left: -30px;
+        width: 60px;
+        height: 75px;
+        background: rgba(20, 20, 20, .1);
+        box-shadow: 0px 0 20px 35px rgba(20,20,20,.1);
+        border-radius: 30px / 40px;
+    }
+    50% {
+        bottom: 30px;
+        margin-left: -10px;
+        width: 20px;
+        height: 5px;
+        background: rgba(20, 20, 20, .3);
+        box-shadow: 0px 0 20px 35px rgba(20,20,20,.3);
+        border-radius: 20px / 20px;
+    }
+    100% {
+        bottom: 0;
+        margin-left: -30px;
+        width: 60px;
+        height: 75px;
+        background: rgba(20, 20, 20, .1);
+        box-shadow: 0px 0 20px 35px rgba(20,20,20,.1);
+        border-radius: 30px / 40px;
+    }
+}
+                </code>
+            </pre>
+            <h3>JavaScript</h3>
+            <pre>
+                <code>
+function pauseAll() {
+    let bar = document.getElementsByClassName('bar')[0];
+    let sphere = document.getElementsByClassName('sphere')[0];
+    let sphereShadow = document.getElementsByClassName('sphereShadow')[0];
+    let button = document.getElementById('pauseButton');
+    if(button.innerHTML==="Pause") {
+        bar.classList.add('paused');
+        sphere.classList.add('paused');
+        sphereShadow.classList.add('paused');
+        button.innerHTML="Play";
+    } else {
+        bar.classList.remove('paused');
+        sphere.classList.remove('paused');
+        sphereShadow.classList.remove('paused');
+        button.innerHTML="Pause";
+    }
+}
+                </code>
+            </pre>
+            <div class="bar"></div>
+            <button id="pauseButton" onclick="pauseAll()">Pause</button>
+            <div class="ball">
+                <div class="sphere"></div>
+                <div class="sphereShadow"></div>
+            </div>
+            </main>
         </main>
         <footer>
             &copy;2019 J. Sterling Wright, Virgina - 
-            <a href="http://www.byui.edu/online">BYU-Idaho Online Learning</a>
+            <a href="http://www.byui.edu/online">BYU-Idaho Online Learning</a><br>
+            <a href="https://tympanus.net/Tutorials/CSS3BouncingBall/">
+                Thanks to Daniel Sternlicht for the head start on CSS values</a>    
         </footer>
+        <script src="css3_animations.js"></script>
     </body>
 </html>
