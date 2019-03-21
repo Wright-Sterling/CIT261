@@ -7,6 +7,7 @@
         <meta name="description" content="Topic fluency page for Sterling Wright in CIT 261: Mobile Application Development at BYU-Idaho">
         <link rel="stylesheet" href="styles/normalize.css">
         <link rel="stylesheet" href="styles/main.css">
+        <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
     </head>
     <body>
         <header>
@@ -16,8 +17,25 @@
         </nav>
         <main>
             <h2>CIT 261 - Final Project</h2>
-            <h3>Trivia Quiz!</h3>
-            <button onclick="showQuestion()">Show a Question</button>
+            <div class="game-banner">
+                <div>Lightning Trivia</div>
+                <div><img src="assets/lightning.png" class="lightning"></div>
+                <div class="game-small">Running Score
+                    <p id="running-score">1000</p>
+                </div>
+            </div>
+            <div class="question-score">
+                <div class="col-md-3 col-sm-3 col-xs-6"> <a href="#" 
+                    class="btn btn-sm animated-button thar-two"
+                    onclick="showQuestion()">
+                    Show a Question</a>
+                </div>
+                <div class="game-small">This Question Worth
+                    <p id="question-value">500</p>
+                </div>
+            </div>
+            Category:<div id="category"></div>
+            Difficulty:<div id="difficulty"></div>
             <div id="question"></div>
             Options:
             <div id="options"></div>

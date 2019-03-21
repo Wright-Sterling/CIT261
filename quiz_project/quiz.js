@@ -27,6 +27,7 @@ function showQuestion() {
     document.getElementById("question").innerHTML = qQuest;
     document.getElementById("options").innerHTML = strOptions;
     document.getElementById("answer").innerHTML = "";
+    document.getElementById("question-value").innerHTML = "200";
 }
 
 function showAnswer() {
