@@ -263,7 +263,7 @@ a.animated-button:link, a.animated-button:visited {
 	transition: all 1s ease;
 }
 
-a.animated-button.thar-two {
+a.animated-button.question-button {
 	color: #fff;
 	cursor: pointer;
 	display: block;
@@ -271,17 +271,17 @@ a.animated-button.thar-two {
 	border: 2px solid #F7CA18;
 	transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
 }
-a.animated-button.thar-two:hover {
+a.animated-button.question-button:hover {
 	color: #000 !important;
 	background-color: transparent;
 	text-shadow: ntwo;
 }
-a.animated-button.thar-two:hover:before {
+a.animated-button.question-button:hover:before {
 	top: 0%;
 	bottom: auto;
 	height: 100%;
 }
-a.animated-button.thar-two:before {
+a.animated-button.question-button:before {
 	display: block;
 	position: absolute;
 	left: 0px;

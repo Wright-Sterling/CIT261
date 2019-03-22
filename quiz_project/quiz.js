@@ -2,6 +2,7 @@ var xmlhttp = new XMLHttpRequest();
 var url = "quiz.json";
 var quizArray = "";
 var question = "";
+var questionValue = 600; // will be updated to match difficulty
 
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -12,6 +13,7 @@ xmlhttp.open("GET", url, true);
 xmlhttp.send();
 
 function showQuestion() {
+    countdownButton(questionValue);
     var quizKeys = Object.keys(quizArray.quiz);
     var randCat = quizKeys[Math.floor(Math.random() * quizKeys.length)];
     var catKeys = Object.keys(quizArray.quiz[randCat]);
@@ -27,10 +29,13 @@ function showQuestion() {
     document.getElementById("question").innerHTML = qQuest;
     document.getElementById("options").innerHTML = strOptions;
     document.getElementById("answer").innerHTML = "";
-    document.getElementById("question-value").innerHTML = "200";
 }
 
 function showAnswer() {
     var qAns = question.answer;
     document.getElementById("answer").innerHTML = qAns;
+}
+
+function countdownButton(value) {
+    document.getElementById("question-value").innerHTML = value;
 }
