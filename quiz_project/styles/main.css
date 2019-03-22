@@ -24,7 +24,7 @@ h2 {
 }
 
 main {
-    margin: 70px;
+    margin: 90px;
 }
 
 footer {
@@ -65,8 +65,8 @@ footer {
   .header .logo {
     display: block;
     float: left;
-    font-size: 2em;
-    padding: 10px 20px;
+    font-size: 1.5em;
+    padding: 10px 10px;
     text-decoration: none;
   }
   
