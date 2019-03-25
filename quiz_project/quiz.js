@@ -1,5 +1,6 @@
 var xmlhttp = new XMLHttpRequest();
 var url = "quiz.json";
+var supportLocalStorage = true;
 var quizArray = "";
 var question = "";
 var runningScore = 500; // store and retrieve from local storage
@@ -19,11 +20,24 @@ xmlhttp.onreadystatechange = function() {
 xmlhttp.open("GET", url, true);
 xmlhttp.send();
 
+if (typeof(Storage) == "undefined") {
+    alert("Your browser does not support local storage. Your score will not persist between sessions.");
+    supportLocalStorage = false;
+}
+
+if (supportLocalStorage) {
+    runningScore = localStorage.runningScore;
+    if (runningScore == "undefined") runningScore = 0;
+ }
+
 updateRunningScore();
 
 function updateRunningScore() {
     if (runningScore <0) runningScore = 0;
     document.querySelector("#running-score").innerHTML = runningScore;
+        if (supportLocalStorage) {
+            localStorage.setItem("runningScore", runningScore);
+        }
 }
 
 function showQuestion() {
