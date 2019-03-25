@@ -109,6 +109,13 @@ function displayQuestion() {
 function getAnswer(answer) {
     console.log(answer);
     var numAnswer = answer.slice(6);
+    var selectedButton = document.getElementById(answer);
+    var selectedLabel = document.querySelector("label[for=option"+numAnswer+"]");
+    if (question.options[numAnswer] == question.answer) {
+        selectedLabel.style.color = "green";
+    } else {
+        selectedLabel.style.color = "red";
+    }
     console.log (numAnswer);
     console.log (numAnswer *100);
     console.log (question.options[numAnswer]+ " : " + question.answer);
