@@ -94,7 +94,8 @@ function displayQuestion() {
     //    strOptions = strOptions + "</li><li>" + qOpts[i];
         var strOptions = strOptions +
             "<p>"+
-                "<input type='radio' id='option"+i+"' name='radio-group' checked>"+
+                "<input type='radio' id='option"+i+"' name='radio-group'"+
+                "onclick='getAnswer(this.id)'>"+
                 "<label for='option"+i+"'>"+qOpts[i]+"</label>"+
             "</p>"
     }
@@ -103,4 +104,12 @@ function displayQuestion() {
     document.getElementById("question").innerHTML = qQuest;
     document.getElementById("options").innerHTML = strOptions;
     document.getElementById("answer").innerHTML = "";
+}
+
+function getAnswer(answer) {
+    console.log(answer);
+    var numAnswer = answer.slice(6);
+    console.log (numAnswer);
+    console.log (numAnswer *100);
+    console.log (question.options[numAnswer]+ " : " + question.answer);
 }
