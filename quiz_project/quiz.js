@@ -2,11 +2,14 @@ var xmlhttp = new XMLHttpRequest();
 var url = "quiz.json";
 var quizArray = "";
 var question = "";
+var runningScore = 500; // store and retrieve from local storage
 var questionValue = 600; // will be updated to match difficulty
+var newValue = 0;
 var myButton = document.getElementsByClassName("question-button")[0];
 var buttonText = ["Ready...", "Set...", "Go!"];
 var buttonTexts = buttonText.length;
 var textPointer = 0;
+var downloadTimer = null;
 
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -15,6 +18,13 @@ xmlhttp.onreadystatechange = function() {
 };
 xmlhttp.open("GET", url, true);
 xmlhttp.send();
+
+updateRunningScore();
+
+function updateRunningScore() {
+    if (runningScore <0) runningScore = 0;
+    document.querySelector("#running-score").innerHTML = runningScore;
+}
 
 function showQuestion() {
     myButton.innerHTML = buttonText[0];
@@ -40,13 +50,13 @@ function nextButtonText(i) {
 }
 
 function valueCountdown() {
-    var newValue = questionValue;
-    var downloadTimer = setInterval(function(){
+    newValue = questionValue;
+    downloadTimer = setInterval(function(){
         var correctValueElement = document.getElementsByClassName("correct-value")[0];
         var incorrectValueElement = document.getElementsByClassName("incorrect-value")[0];
+        newValue -= 50;
         correctValueElement.innerHTML = newValue;
         incorrectValueElement.innerHTML = (questionValue - newValue) * -1;
-        newValue -= 50;
         if(newValue <= 0){ // testing here rather than at top on purpose
             clearInterval(downloadTimer);
             correctValueElement.innerHTML = 0;
@@ -91,7 +101,6 @@ function displayQuestion() {
     var strOptions = ""
     //var strOptions = "<ol><li>" + qOpts[0]; // assuming at least one option
     for (i = 0; i < qOpts.length; i++) {
-    //    strOptions = strOptions + "</li><li>" + qOpts[i];
         var strOptions = strOptions +
             "<p>"+
                 "<input type='radio' id='option"+i+"' name='radio-group'"+
@@ -99,7 +108,6 @@ function displayQuestion() {
                 "<label for='option"+i+"'>"+qOpts[i]+"</label>"+
             "</p>"
     }
-    //strOptions += "</li></ol>";
     document.getElementsByClassName("correct-value")[0].innerHTML = questionValue;
     document.getElementById("question").innerHTML = qQuest;
     document.getElementById("options").innerHTML = strOptions;
@@ -107,13 +115,17 @@ function displayQuestion() {
 }
 
 function getAnswer(answer) {
+    clearInterval(downloadTimer);
     console.log(answer);
     var numAnswer = answer.slice(6);
     var selectedButton = document.getElementById(answer);
     var selectedLabel = document.querySelector("label[for=option"+numAnswer+"]");
     if (question.options[numAnswer] == question.answer) {
         selectedLabel.style.color = "green";
+        runningScore += newValue;
     } else {
         selectedLabel.style.color = "red";
+        runningScore -= questionValue - newValue;
     }
+    updateRunningScore();
 }
