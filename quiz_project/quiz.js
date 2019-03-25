@@ -116,7 +116,4 @@ function getAnswer(answer) {
     } else {
         selectedLabel.style.color = "red";
     }
-    console.log (numAnswer);
-    console.log (numAnswer *100);
-    console.log (question.options[numAnswer]+ " : " + question.answer);
 }
