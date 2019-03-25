@@ -40,14 +40,17 @@ function nextButtonText(i) {
 }
 
 function valueCountdown() {
-    var startValue = 500; // replace with value assigned by difficulty level
-    var newValue = startValue;
+    var newValue = questionValue;
     var downloadTimer = setInterval(function(){
-        document.getElementById("question-value").innerHTML = newValue;
+        var correctValueElement = document.getElementsByClassName("correct-value")[0];
+        var incorrectValueElement = document.getElementsByClassName("incorrect-value")[0];
+        correctValueElement.innerHTML = newValue;
+        incorrectValueElement.innerHTML = (questionValue - newValue) * -1;
         newValue -= 50;
-        if(newValue <= startValue*-1){
+        if(newValue <= 0){ // testing here rather than at top on purpose
             clearInterval(downloadTimer);
-            document.getElementById("question-value").innerHTML = "Finished"
+            correctValueElement.innerHTML = 0;
+            incorrectValueElement.innerHTML = questionValue * -1;
         }
     }, 1000);
 }
@@ -88,7 +91,7 @@ function displayQuestion() {
         strOptions = strOptions + "</li><li>" + qOpts[i];
     }
     strOptions += "</li></ol>";
-    document.getElementById("question-value").innerHTML = questionValue;
+    document.getElementsByClassName("correct-value")[0].innerHTML = questionValue;
     document.getElementById("question").innerHTML = qQuest;
     document.getElementById("options").innerHTML = strOptions;
     document.getElementById("answer").innerHTML = "";

@@ -191,14 +191,36 @@ footer, footer a {
     display: flex;
 }
 
-.game-small {
-    font-size: 25px;
-}
-
 .question-score {
     font-family: 'Bangers', cursive;
     font-size: 30px;
-    display: flex;
+    display: grid;
+}
+
+.game-small {
+  font-size: 25px;
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+
+.correct-title {
+  font-size: 20px;
+  grid-column: 2;
+}
+
+.incorrect-title {
+  font-size: 20px;
+  grid-column: 3;
+}
+
+.correct-value {
+  font-size: 20px;
+  grid-column: 2;
+}
+
+.incorrect-value {
+  font-size: 20px;
+  grid-column: 3;
 }
 
 .question-button {
