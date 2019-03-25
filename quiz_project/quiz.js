@@ -58,6 +58,8 @@ function valueCountdown() {
 function showAnswer() {
     var qAns = question.answer;
     document.getElementById("answer").innerHTML = qAns;
+    var tempOne = document.getElementById("option1");
+    var labelOne = tempOne.labels[0].innerHTML;
 }
 
 function countdownButton() {
@@ -86,11 +88,17 @@ function displayQuestion() {
     question = quizArray.quiz[randCat][randQ]; // global so I can show answer in different function
     var qQuest = question.question;
     var qOpts = question.options;
-    var strOptions = "<ol><li>" + qOpts[0]; // assuming at least one option
-    for (i = 1; i < qOpts.length; i++) {
-        strOptions = strOptions + "</li><li>" + qOpts[i];
+    var strOptions = ""
+    //var strOptions = "<ol><li>" + qOpts[0]; // assuming at least one option
+    for (i = 0; i < qOpts.length; i++) {
+    //    strOptions = strOptions + "</li><li>" + qOpts[i];
+        var strOptions = strOptions +
+            "<p>"+
+                "<input type='radio' id='option"+i+"' name='radio-group' checked>"+
+                "<label for='option"+i+"'>"+qOpts[i]+"</label>"+
+            "</p>"
     }
-    strOptions += "</li></ol>";
+    //strOptions += "</li></ol>";
     document.getElementsByClassName("correct-value")[0].innerHTML = questionValue;
     document.getElementById("question").innerHTML = qQuest;
     document.getElementById("options").innerHTML = strOptions;
