@@ -179,3 +179,7 @@ function showRules() {
         sec.classList.add("show");
     }
 }
+
+function clearStorage() {
+    localStorage.clear();
+}

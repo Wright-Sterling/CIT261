@@ -311,11 +311,32 @@ footer, footer a {
 
 .developer {
   display: none;
+  margin-left: 20px;
 }
 .developer.show {
-  display: flex;
+  display: block;
 }
 
+.developer-menu {
+  width: 200px;
+}
+
+.developer-menu a {
+  background-color: #eee; /* Grey background color */
+  color: black; /* Black text color */
+  display: block; /* Make the links appear below each other */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove underline from links */
+}
+
+.developer-menu a:hover {
+  background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.developer-menu a.active {
+  background-color: #4CAF50; /* Add a green color to the "active/current" link */
+  color: white;
+}
 .about {
   display: none;
 }
