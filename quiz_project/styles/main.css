@@ -8,6 +8,7 @@ body {
     line-height: 32px;
     font-family: sans-serif;
     color: black;
+    max-width: 850px;
 }
 
 h1 {
@@ -24,7 +25,8 @@ h2 {
 }
 
 main {
-    margin: 90px;
+    margin-left: 50px;
+    margin-top: 90px;
 }
 
 footer {
@@ -52,7 +54,7 @@ footer {
   
   .header li a {
     display: block;
-    padding: 20px 20px;
+    padding: 10px 10px;
     border-right: 1px solid #f4f4f4;
     text-decoration: none;
   }
@@ -66,7 +68,7 @@ footer {
     display: block;
     float: left;
     font-size: 1.5em;
-    padding: 10px 10px;
+    padding: 20px 10px;
     text-decoration: none;
   }
   
@@ -124,7 +126,7 @@ footer {
   }
   
   .header .menu-btn:checked ~ .menu {
-    max-height: 240px;
+    max-height: 340px;
   }
   
   .header .menu-btn:checked ~ .menu-icon .navicon {
@@ -305,4 +307,32 @@ footer, footer a {
 
 .style1 {
     margin: 0 auto; border: 1px solid #bbb; padding: 5px; background-color: #eee; line-height: 1.5em;
+}
+
+.developer {
+  display: none;
+}
+.developer.show {
+  display: flex;
+}
+
+.about {
+  display: none;
+}
+.about.show {
+  display: flex;
+}
+
+.settings {
+  display: none;
+}
+.settings.show {
+  display: flex;
+}
+
+.rules {
+  display: none;
+}
+.rules.show {
+  display: flex;
 }

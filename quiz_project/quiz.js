@@ -143,3 +143,39 @@ function getAnswer(answer) {
     }
     updateRunningScore();
 }
+
+function showDeveloper() {
+    var sec=document.querySelector(".developer");
+    if(sec.classList.contains("show")) {
+        sec.classList.remove("show");
+    } else {
+        sec.classList.add("show");
+    }
+}
+
+function showAbout() {
+    var sec=document.querySelector(".about");
+    if(sec.classList.contains("show")) {
+        sec.classList.remove("show");
+    } else {
+        sec.classList.add("show");
+    }
+}
+
+function showSettings() {
+    var sec=document.querySelector(".settings");
+    if(sec.classList.contains("show")) {
+        sec.classList.remove("show");
+    } else {
+        sec.classList.add("show");
+    }
+}
+
+function showRules() {
+    var sec=document.querySelector(".rules");
+    if(sec.classList.contains("show")) {
+        sec.classList.remove("show");
+    } else {
+        sec.classList.add("show");
+    }
+}

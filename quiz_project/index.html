@@ -15,10 +15,10 @@
                 <input class="menu-btn" type="checkbox" id="menu-btn" />
                 <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
                 <ul class="menu">
-                    <li><a href="#rules">Rules</a></li>
-                    <li><a href="#settings">Settings</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#developer">Developer</a></li>
+                    <li><a href="#rules" onclick="showRules()">Rules</a></li>
+                    <li><a href="#settings" onclick="showSettings()">Settings</a></li>
+                    <li><a href="#about" onclick="showAbout()">About</a></li>
+                    <li><a href="#developer" onclick="showDeveloper()">Developer</a></li>
                 </ul>
         </header>        
         <main>
@@ -51,6 +51,10 @@
             <button onclick="showAnswer()">Show the Answer</button>
             <div id="answer"></div>
         </main>
+        <section class="developer">Developer</section>
+        <section class="about">About</section>
+        <section class="settings">Settings</section>
+        <section class="rules">Rules</section>
         <footer>
             &copy;2019 J. Sterling Wright, Virgina - 
             <a href="http://www.byui.edu/online">BYU-Idaho Online Learning</a>
