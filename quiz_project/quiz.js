@@ -11,6 +11,8 @@ var buttonText = ["Ready...", "Set...", "Go!"];
 var buttonTexts = buttonText.length;
 var textPointer = 0;
 var downloadTimer = null;
+var canvas =  document.querySelector("canvas");
+var ctx = canvas.getContext("2d");
 
 xmlhttp.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
@@ -34,7 +36,7 @@ if (supportLocalStorage) {
 
 
 function updateRunningScore() {
-    if (runningScore <0) runningScore = 0;
+    if (runningScore <0 || runningScore === null) runningScore = 0;
     document.querySelector("#running-score").innerHTML = runningScore;
         if (supportLocalStorage) {
             localStorage.setItem("runningScore", runningScore);
@@ -43,11 +45,12 @@ function updateRunningScore() {
 updateRunningScore();
 
 function showQuestion() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
     myButton.innerHTML = buttonText[0];
     var y = 0;
-    setTimeout(myTimeout1, 2000);
-    setTimeout(myTimeout2, 4000);
-    setTimeout(myTimeout3, 4500);
+    setTimeout(myTimeout1, 1500);
+    setTimeout(myTimeout2, 3000);
+    setTimeout(myTimeout3, 3500);
 }
 
 function myTimeout1() {
@@ -107,7 +110,6 @@ function nextText() {
 }
 
 function displayQuestion() {
-    valueCountdown();
     var quizKeys = Object.keys(quizArray.quiz);
     var randCat = quizKeys[Math.floor(Math.random() * quizKeys.length)];
     var catKeys = Object.keys(quizArray.quiz[randCat]);
@@ -117,6 +119,8 @@ function displayQuestion() {
     var qOpts = question.options;
     var strOptions = ""
     //var strOptions = "<ol><li>" + qOpts[0]; // assuming at least one option
+    document.getElementById("category").innerHTML=question.category;
+    valueCountdown();
     for (i = 0; i < qOpts.length; i++) {
         var strOptions = strOptions +
             "<p>"+
@@ -139,7 +143,6 @@ function getAnswer(answer) {
     var selectedLabel = document.querySelector("label[for=option"+numAnswer+"]");
     var feedbackText = document.querySelector("#feedback");
     var optionsID = document.querySelector("#options");
-    var canvas =  document.querySelector("canvas");
     var style = window.getComputedStyle ? getComputedStyle(optionsID) : optionsID.curentStyle;
     var optionsArea = {
         marginLeft: parseInt(style.marginLeft) || 0,
@@ -157,18 +160,19 @@ function getAnswer(answer) {
     ctx.textAlign = "center";
     if (question.options[numAnswer] == question.answer) {
         selectedLabel.style.color = "green";
-        feedbackText.innerHTML = "CORRECT!";
+//        feedbackText.innerHTML = "CORRECT!";
         ctx.fillStyle = "green";
         ctx.fillText("CORRECT!", canvas.width/2, canvas.height/2);
         runningScore += newValue;
     } else {
         selectedLabel.style.color = "red";
-        feedbackText.innerHTML = "INCORRECT!";
+//        feedbackText.innerHTML = "INCORRECT!";
         ctx.fillStyle = "red";
         ctx.fillText("INCORRECT!", canvas.width/2, canvas.height/2);
         runningScore -= questionValue - newValue;
     }
     optionsID.className="hide";
+    myButton.innerHTML="New Question";
     updateRunningScore();
 }
 
