@@ -12,25 +12,26 @@ var buttonTexts = buttonText.length;
 var textPointer = 0;
 var downloadTimer = null;
 
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
+xmlhttp.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) {
         quizArray = JSON.parse(this.responseText);
     }
 };
 xmlhttp.open("GET", url, true);
 xmlhttp.send();
 
-if (typeof(Storage) == "undefined") {
+if (typeof (Storage) === "undefined") {
     alert("Your browser does not support local storage. Your score will not persist between sessions.");
     supportLocalStorage = false;
 }
 
 if (supportLocalStorage) {
     runningScore = localStorage.runningScore;
-    if (runningScore == "undefined") runningScore = 0;
+    if (runningScore === "undefined") {
+        runningScore = 0;
+    }
  }
 
-updateRunningScore();
 
 function updateRunningScore() {
     if (runningScore <0) runningScore = 0;
@@ -39,6 +40,7 @@ function updateRunningScore() {
             localStorage.setItem("runningScore", runningScore);
         }
 }
+updateRunningScore();
 
 function showQuestion() {
     myButton.innerHTML = buttonText[0];
@@ -46,7 +48,7 @@ function showQuestion() {
     setTimeout(myTimeout1, 2000);
     setTimeout(myTimeout2, 4000);
     setTimeout(myTimeout3, 4500);
-  }
+}
 
 function myTimeout1() {
 myButton.innerHTML = buttonText[1];
@@ -58,10 +60,11 @@ function myTimeout3() {
 displayQuestion();
 }
 
-
+/* 
 function nextButtonText(i) {
     myButton.innerHTML = buttonText[i];
 }
+*/
 
 function valueCountdown() {
     newValue = questionValue;
@@ -122,6 +125,7 @@ function displayQuestion() {
                 "<label for='option"+i+"'>"+qOpts[i]+"</label>"+
             "</p>"
     }
+    document.querySelector("#options").className="show";
     document.getElementsByClassName("correct-value")[0].innerHTML = questionValue;
     document.getElementById("question").innerHTML = qQuest;
     document.getElementById("options").innerHTML = strOptions;
@@ -130,17 +134,20 @@ function displayQuestion() {
 
 function getAnswer(answer) {
     clearInterval(downloadTimer);
-    console.log(answer);
     var numAnswer = answer.slice(6);
     var selectedButton = document.getElementById(answer);
     var selectedLabel = document.querySelector("label[for=option"+numAnswer+"]");
+    var feedbackText = document.querySelector("#feedback");
     if (question.options[numAnswer] == question.answer) {
         selectedLabel.style.color = "green";
+        feedbackText.innerHTML = "CORRECT!";
         runningScore += newValue;
     } else {
         selectedLabel.style.color = "red";
+        feedbackText.innerHTML = "INCORRECT!";
         runningScore -= questionValue - newValue;
     }
+    document.querySelector("#options").className="hide";
     updateRunningScore();
 }
 

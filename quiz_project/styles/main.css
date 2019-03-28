@@ -238,6 +238,31 @@ footer, footer a {
     animation-duration: 2s;
 }
 
+#options.show, #options.hide {
+  overflow: hidden;
+}
+
+#options.show {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 2s linear;
+}
+
+#options.hide {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s .3s, opacity .3s linear;
+}
+
+#options.hide > form {
+  /* seeing if this is needed */
+}
+
+#options.hide > form {
+  margin-top: -10000px;
+  transition: margin-top 0s 2s;
+}
+
 @keyframes fadeInOut {
     0% {
       opacity: 0;
