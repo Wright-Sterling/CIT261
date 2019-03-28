@@ -254,15 +254,6 @@ footer, footer a {
   transition: visibility 0s .3s, opacity .3s linear;
 }
 
-#options.hide > form {
-  /* seeing if this is needed */
-}
-
-#options.hide > form {
-  margin-top: -10000px;
-  transition: margin-top 0s 2s;
-}
-
 @keyframes fadeInOut {
     0% {
       opacity: 0;
