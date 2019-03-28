@@ -3,10 +3,10 @@ var url = "quiz.json";
 var supportLocalStorage = true;
 var quizArray = "";
 var question = "";
-var runningScore = 500; // store and retrieve from local storage
+var runningScore = 0; // store and retrieve from local storage
 var questionValue = 600; // will be updated to match difficulty
 var newValue = 0;
-var myButton = document.getElementsByClassName("question-button")[0];
+var qButton = document.getElementsByClassName("question-button")[0];
 var buttonText = ["Ready...", "Set...", "Go!"];
 var buttonTexts = buttonText.length;
 var textPointer = 0;
@@ -28,15 +28,15 @@ if (typeof (Storage) === "undefined") {
 }
 
 if (supportLocalStorage) {
-    runningScore = localStorage.runningScore;
-    if (runningScore === "undefined") {
+    runningScore = parseInt(localStorage.runningScore);
+    if (isNaN(runningScore)) {
         runningScore = 0;
     }
  }
 
 
 function updateRunningScore() {
-    if (runningScore <0 || runningScore === null) runningScore = 0;
+    if (runningScore <0 || typeof runningScore != "number") runningScore = 0;
     document.querySelector("#running-score").innerHTML = runningScore;
         if (supportLocalStorage) {
             localStorage.setItem("runningScore", runningScore);
@@ -54,7 +54,7 @@ function showQuestion() {
     document.getElementById("category").innerHTML = 
         "Category: " + randCat.charAt(0).toUpperCase() + randCat.slice(1);
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    myButton.innerHTML = buttonText[0];
+    qButton.innerHTML = buttonText[0];
     var y = 0;
     setTimeout(myTimeout1, 1500);
     setTimeout(myTimeout2, 3000);
@@ -62,10 +62,10 @@ function showQuestion() {
 }
 
 function myTimeout1() {
-myButton.innerHTML = buttonText[1];
+qButton.innerHTML = buttonText[1];
 }
 function myTimeout2() {
-myButton.innerHTML = buttonText[2];
+qButton.innerHTML = buttonText[2];
 }
 function myTimeout3() {
 displayQuestion(question);
@@ -101,14 +101,14 @@ function showAnswer() {
 }
 
 function countdownButton() {
-    myButton.addEventListener("animationend", nextText);
-    myButton.innerHTML = buttonText[textPointer];
-    myButton.classList.add('fadeInOut');
+    qButton.addEventListener("animationend", nextText);
+    qButton.innerHTML = buttonText[textPointer];
+    qButton.classList.add('fadeInOut');
 }
 
 function nextText() {
     console.log(textPointer);
-    myButton.classList.remove('fadeInOut');
+    qButton.classList.remove('fadeInOut');
     textPointer++;
     if (textPointer < buttonTexts) {
         countdownButton();
@@ -175,7 +175,7 @@ function getAnswer(answer) {
         runningScore -= questionValue - newValue;
     }
     optionsID.className="hide";
-    myButton.innerHTML="New Question";
+    qButton.innerHTML="New Question";
     updateRunningScore();
 }
 
