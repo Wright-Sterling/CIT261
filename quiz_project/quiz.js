@@ -45,6 +45,14 @@ function updateRunningScore() {
 updateRunningScore();
 
 function showQuestion() {
+    var quizKeys = Object.keys(quizArray.quiz);
+    var randCat = quizKeys[Math.floor(Math.random() * quizKeys.length)];
+    var catKeys = Object.keys(quizArray.quiz[randCat]);
+    var randQ = catKeys[Math.floor(Math.random() * catKeys.length)];
+    question = quizArray.quiz[randCat][randQ]; // global so I can show answer in different function
+    document.getElementById("question").innerHTML = "";
+    document.getElementById("category").innerHTML = 
+        "Category: " + randCat.charAt(0).toUpperCase() + randCat.slice(1);
     ctx.clearRect(0,0,canvas.width,canvas.height);
     myButton.innerHTML = buttonText[0];
     var y = 0;
@@ -60,7 +68,7 @@ function myTimeout2() {
 myButton.innerHTML = buttonText[2];
 }
 function myTimeout3() {
-displayQuestion();
+displayQuestion(question);
 }
 
 /* 
@@ -109,17 +117,12 @@ function nextText() {
     }
 }
 
-function displayQuestion() {
-    var quizKeys = Object.keys(quizArray.quiz);
-    var randCat = quizKeys[Math.floor(Math.random() * quizKeys.length)];
-    var catKeys = Object.keys(quizArray.quiz[randCat]);
-    var randQ = catKeys[Math.floor(Math.random() * catKeys.length)];
-    question = quizArray.quiz[randCat][randQ]; // global so I can show answer in different function
+function displayQuestion(nextQuestion) {
+    var strOptions = ""
     var qQuest = question.question;
     var qOpts = question.options;
-    var strOptions = ""
+
     //var strOptions = "<ol><li>" + qOpts[0]; // assuming at least one option
-    document.getElementById("category").innerHTML=question.category;
     valueCountdown();
     for (i = 0; i < qOpts.length; i++) {
         var strOptions = strOptions +
