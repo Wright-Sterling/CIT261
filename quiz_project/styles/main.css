@@ -238,10 +238,6 @@ footer, footer a {
     animation-duration: 2s;
 }
 
-#options.show, #options.hide {
-  overflow: hidden;
-}
-
 #options.show {
   visibility: visible;
   opacity: 1;
@@ -252,6 +248,11 @@ footer, footer a {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s .3s, opacity .3s linear;
+}
+
+canvas {
+  position: absolute;
+  border: 1px solid black;
 }
 
 @keyframes fadeInOut {

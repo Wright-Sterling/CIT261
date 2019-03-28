@@ -147,7 +147,23 @@ function getAnswer(answer) {
         feedbackText.innerHTML = "INCORRECT!";
         runningScore -= questionValue - newValue;
     }
-    document.querySelector("#options").className="hide";
+    var optionsID = document.querySelector("#options");
+    var canvas =  document.querySelector("canvas");
+    var style = window.getComputedStyle ? getComputedStyle(optionsID) : optionsID.curentStyle;
+    var optionsArea = {
+        marginLeft: parseInt(style.marginLeft) || 0,
+        offsetTop: optionsID.offsetTop,
+        offsetLeft: optionsID.offsetLeft,
+        offsetHeight: optionsID.offsetHeight,
+        offsetWidth: optionsID.offsetWidth
+    }
+    canvas.top = optionsArea.offsetTop+"px";
+    canvas.style.left = optionsArea.offsetLeft+"px";
+    canvas.height = optionsArea.offsetHeight;
+    //canvas.width = optionsArea.offsetWidth;
+    console.log(canvas);
+
+    optionsID.className="hide";
     updateRunningScore();
 }
 
