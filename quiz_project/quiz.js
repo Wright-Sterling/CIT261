@@ -138,15 +138,6 @@ function getAnswer(answer) {
     var selectedButton = document.getElementById(answer);
     var selectedLabel = document.querySelector("label[for=option"+numAnswer+"]");
     var feedbackText = document.querySelector("#feedback");
-    if (question.options[numAnswer] == question.answer) {
-        selectedLabel.style.color = "green";
-        feedbackText.innerHTML = "CORRECT!";
-        runningScore += newValue;
-    } else {
-        selectedLabel.style.color = "red";
-        feedbackText.innerHTML = "INCORRECT!";
-        runningScore -= questionValue - newValue;
-    }
     var optionsID = document.querySelector("#options");
     var canvas =  document.querySelector("canvas");
     var style = window.getComputedStyle ? getComputedStyle(optionsID) : optionsID.curentStyle;
@@ -161,8 +152,22 @@ function getAnswer(answer) {
     canvas.style.left = optionsArea.offsetLeft+"px";
     canvas.height = optionsArea.offsetHeight;
     //canvas.width = optionsArea.offsetWidth;
-    console.log(canvas);
-
+    var ctx = canvas.getContext("2d");
+    ctx.font = "30px Arial";
+    ctx.textAlign = "center";
+    if (question.options[numAnswer] == question.answer) {
+        selectedLabel.style.color = "green";
+        feedbackText.innerHTML = "CORRECT!";
+        ctx.fillStyle = "green";
+        ctx.fillText("CORRECT!", canvas.width/2, canvas.height/2);
+        runningScore += newValue;
+    } else {
+        selectedLabel.style.color = "red";
+        feedbackText.innerHTML = "INCORRECT!";
+        ctx.fillStyle = "red";
+        ctx.fillText("INCORRECT!", canvas.width/2, canvas.height/2);
+        runningScore -= questionValue - newValue;
+    }
     optionsID.className="hide";
     updateRunningScore();
 }
