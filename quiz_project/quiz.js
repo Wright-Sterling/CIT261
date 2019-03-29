@@ -6,7 +6,10 @@ var url2 = "https://opentdb.com/api.php?amount=10";
 var supportLocalStorage = true;
 var quizArray = "";
 var quizArray2 = "";
+var upNext = 0;
 var question = "";
+var shuffledOptions = "";
+var correctAnswer = "";
 var runningScore = 0; // store and retrieve from local storage
 var questionValue = 600; // will be updated to match difficulty
 var newValue = 0;
@@ -63,13 +66,18 @@ function showQuestion() {
     var quizKeys = Object.keys(quizArray.quiz);
     var quizKeys2 = Object.keys(quizArray2.results);
     var randCat = quizKeys[Math.floor(Math.random() * quizKeys.length)];
-    var randCat2 = quizKeys2[Math.floor(Math.random() * quizKeys.length)];
     var catKeys = Object.keys(quizArray.quiz[randCat]);
     var randQ = catKeys[Math.floor(Math.random() * catKeys.length)];
-    question = quizArray.quiz[randCat][randQ]; // global so I can show answer in different function
+//    question = quizArray.quiz[randCat][randQ]; // global so I can show answer in different function
+    question = quizArray2.results[upNext]; 
+    upNext++;
+    if (upNext == quizArray2.length) {
+        upNext = 0; // just loop for now. Go get more questions eventually
+        // in fact, this should be a while loop like a normal game
+    }
     document.getElementById("question").innerHTML = "";
     document.getElementById("category").innerHTML = 
-        "Category: " + randCat.charAt(0).toUpperCase() + randCat.slice(1);
+        "Category: " + question.category;
     ctx.clearRect(0,0,canvas.width,canvas.height);
     qButton.innerHTML = buttonText[0];
     var y = 0;
@@ -131,7 +139,9 @@ function nextText() {
 function displayQuestion(nextQuestion) {
     var strOptions = ""
     var qQuest = question.question;
-    var qOpts = question.options;
+    var qOpts = question.incorrect_answers;
+    qOpts.push(question.correct_answer);
+    shuffledOptions = qOpts.sort(function(a, b){return 0.5 - Math.random()}); // shuffle array
 
     valueCountdown();
     for (i = 0; i < qOpts.length; i++) {
@@ -170,7 +180,7 @@ function getAnswer(answer) {
     var ctx = canvas.getContext("2d");
     ctx.font = "30px Arial";
     ctx.textAlign = "center";
-    if (question.options[numAnswer] == question.answer) {
+    if (shuffledOptions[numAnswer] == question.correct_answer) {
         selectedLabel.style.color = "green";
 //        feedbackText.innerHTML = "CORRECT!";
         ctx.fillStyle = "green";
