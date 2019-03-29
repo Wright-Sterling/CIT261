@@ -1,0 +1,115 @@
+{
+    "response_code":0,
+    "results":[
+        {
+            "category":"General Knowledge",
+            "type":"multiple",
+            "difficulty":"medium",
+            "question":"When was the Declaration of Independence approved by the Second Continental Congress?",
+            "correct_answer":"July 2, 1776",
+            "incorrect_answers":[
+                "May 4, 1776",
+                "June 4, 1776",
+                "July 4, 1776"]
+        },
+        {
+            "category":"General Knowledge",
+            "type":"multiple",
+            "difficulty":"medium",
+            "question":"A doctor with a PhD is a doctor of what?",
+            "correct_answer":"Philosophy",
+            "incorrect_answers":[
+                "Psychology",
+                "Phrenology",
+                "Physical Therapy"]
+        },
+        {
+            "category":"General Knowledge",
+            "type":"multiple",
+            "difficulty":"medium",
+            "question":"Scotch whisky and Drambuie make up which cocktail?",
+            "correct_answer":"Rusty Nail",
+            "incorrect_answers":[
+                "Screwdriver",
+                "Sex on the Beach",
+                "Manhattan"]
+        },
+        {
+            "category":"General Knowledge",
+            "type":"multiple",
+            "difficulty":"medium",
+            "question":"Which of the following Ivy League universities has its official motto in Hebrew as well as in Latin?",
+            "correct_answer":"Yale University",
+            "incorrect_answers":[
+                "Princeton University",
+                "Harvard University",
+                "Columbia University"]
+        },
+        {
+            "category":"General Knowledge",
+            "type":"multiple",
+            "difficulty":"medium",
+            "question":"After how many years would you celebrate your crystal anniversary?",
+            "correct_answer":"15",
+            "incorrect_answers":[
+                "20",
+                "10",
+                "25"]
+        },
+        {
+            "category":"General Knowledge",
+            "type":"multiple",
+            "difficulty":"medium",
+            "question":"The term &quot;scientist&quot; was coined in which year?",
+            "correct_answer":"1833",
+            "incorrect_answers":[
+                "1933",
+                "1942",
+                "1796"]
+        },
+        {
+            "category":"General Knowledge",
+            "type":"multiple",
+            "difficulty":"medium",
+            "question":"Who is the founder of &quot;The Lego Group&quot;?",
+            "correct_answer":"Ole Kirk Christiansen",
+            "incorrect_answers":[
+                "Jens Niels Christiansen",
+                "Kirstine Christiansen",
+                "Gerhardt Kirk Christiansen"]
+        },
+        {
+            "category":"General Knowledge",
+            "type":"multiple",
+            "difficulty":"medium",
+            "question":"Which of the following carbonated soft drinks were introduced first?",
+            "correct_answer":"Dr. Pepper",
+            "incorrect_answers":[
+                "Coca-Cola",
+                "Sprite",
+                "Mountain Dew"]
+        },
+        {
+            "category":"General Knowledge",
+            "type":"multiple",
+            "difficulty":"medium",
+            "question":"Who invented Pastafarianism?",
+            "correct_answer":"Bobby Henderson",
+            "incorrect_answers":[
+                "Eric Tignor",
+                "Bill Nye",
+                "Zach Soldi"]
+        },
+        {
+            "category":"General Knowledge",
+            "type":"multiple",
+            "difficulty":"medium",
+            "question":"Which company&#039;s original slogan was &quot;Don&#039;t be evil&quot;?",
+            "correct_answer":"Google",
+            "incorrect_answers":[
+                "Apple",
+                "Yahoo",
+                "Microsoft"]
+        }
+    ]
+}

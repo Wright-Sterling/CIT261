@@ -1,7 +1,11 @@
 var xmlhttp = new XMLHttpRequest();
+var xmlhttp2 = new XMLHttpRequest();
 var url = "quiz.json";
+//var url2 = "https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple";
+var url2 = "https://opentdb.com/api.php?amount=10";
 var supportLocalStorage = true;
 var quizArray = "";
+var quizArray2 = "";
 var question = "";
 var runningScore = 0; // store and retrieve from local storage
 var questionValue = 600; // will be updated to match difficulty
@@ -14,39 +18,52 @@ var downloadTimer = null;
 var canvas =  document.querySelector("canvas");
 var ctx = canvas.getContext("2d");
 
-xmlhttp.onreadystatechange = function () {
-    if (this.readyState === 4 && this.status === 200) {
-        quizArray = JSON.parse(this.responseText);
-    }
-};
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
+init();
+updateRunningScore();
 
-if (typeof (Storage) === "undefined") {
-    alert("Your browser does not support local storage. Your score will not persist between sessions.");
-    supportLocalStorage = false;
+function init() {
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            quizArray = JSON.parse(this.responseText);
+        }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+
+    xmlhttp2.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            quizArray2 = JSON.parse(this.responseText);
+        }
+    };
+    xmlhttp2.open("GET", url2, true);
+    xmlhttp2.send();
+
+    if (typeof (Storage) === "undefined") {
+        alert("Your browser does not support local storage. Your score will not persist between sessions.");
+        supportLocalStorage = false;
+    }
+
+    if (supportLocalStorage) {
+        runningScore = parseInt(localStorage.runningScore);
+        if (isNaN(runningScore)) {
+            runningScore = 0;
+        }
+    }
 }
 
-if (supportLocalStorage) {
-    runningScore = parseInt(localStorage.runningScore);
-    if (isNaN(runningScore)) {
-        runningScore = 0;
-    }
- }
-
-
 function updateRunningScore() {
-    if (runningScore <0 || typeof runningScore != "number") runningScore = 0;
+    if (runningScore <0) runningScore = 0;
     document.querySelector("#running-score").innerHTML = runningScore;
         if (supportLocalStorage) {
             localStorage.setItem("runningScore", runningScore);
         }
 }
-updateRunningScore();
 
 function showQuestion() {
     var quizKeys = Object.keys(quizArray.quiz);
+    var quizKeys2 = Object.keys(quizArray2.results);
     var randCat = quizKeys[Math.floor(Math.random() * quizKeys.length)];
+    var randCat2 = quizKeys2[Math.floor(Math.random() * quizKeys.length)];
     var catKeys = Object.keys(quizArray.quiz[randCat]);
     var randQ = catKeys[Math.floor(Math.random() * catKeys.length)];
     question = quizArray.quiz[randCat][randQ]; // global so I can show answer in different function
@@ -70,12 +87,6 @@ qButton.innerHTML = buttonText[2];
 function myTimeout3() {
 displayQuestion(question);
 }
-
-/* 
-function nextButtonText(i) {
-    myButton.innerHTML = buttonText[i];
-}
-*/
 
 function valueCountdown() {
     newValue = questionValue;
@@ -122,7 +133,6 @@ function displayQuestion(nextQuestion) {
     var qQuest = question.question;
     var qOpts = question.options;
 
-    //var strOptions = "<ol><li>" + qOpts[0]; // assuming at least one option
     valueCountdown();
     for (i = 0; i < qOpts.length; i++) {
         var strOptions = strOptions +
@@ -157,7 +167,6 @@ function getAnswer(answer) {
     canvas.top = optionsArea.offsetTop+"px";
     canvas.style.left = optionsArea.offsetLeft+"px";
     canvas.height = optionsArea.offsetHeight;
-    //canvas.width = optionsArea.offsetWidth;
     var ctx = canvas.getContext("2d");
     ctx.font = "30px Arial";
     ctx.textAlign = "center";
