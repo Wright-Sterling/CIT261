@@ -240,6 +240,7 @@ function showAbout() {
     }
 }
 
+/* removed settings option due to lack of time
 function showSettings() {
     var sec=document.querySelector(".settings");
     if(sec.classList.contains("show")) {
@@ -248,6 +249,7 @@ function showSettings() {
         sec.classList.add("show");
     }
 }
+*/
 
 function showRules() {
     var sec=document.querySelector(".rules");

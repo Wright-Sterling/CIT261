@@ -376,12 +376,14 @@ canvas {
   display: flex;
 }
 
+/* removed settings option due to lack of time
 .settings {
   display: none;
 }
 .settings.show {
   display: flex;
 }
+*/
 
 .rules {
   display: none;
