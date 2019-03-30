@@ -250,9 +250,16 @@ footer, footer a {
   transition: visibility 0s .5s, opacity .5s linear;
 }
 
+#answer {
+  display: none;
+}
+#answer.show {
+  display: flex;
+}
+
 canvas {
   position: absolute;
-/*  border: 1px solid black; */
+  border: 1px solid black;
 }
 
 @keyframes fadeInOut {
@@ -326,9 +333,14 @@ canvas {
     margin: 0 auto; border: 1px solid #bbb; padding: 5px; background-color: #eee; line-height: 1.5em;
 }
 
-.developer {
+.developer, .about, .settings, .rules {
   display: none;
-  margin-left: 20px;
+  position: absolute;
+  float: right;
+/*  width: 100%; */
+/*  margin-left: 20px; */
+  right: 20px;
+  text-align: right;
 }
 .developer.show {
   display: block;
@@ -336,6 +348,7 @@ canvas {
 
 .developer-menu {
   width: 200px;
+  text-align: right;
 }
 
 .developer-menu a {

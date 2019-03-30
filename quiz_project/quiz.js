@@ -10,8 +10,9 @@ var upNext = 0;
 var question = "";
 var shuffledOptions = "";
 var correctAnswer = "";
+var showingAnswer = false;
 var runningScore = 0; // store and retrieve from local storage
-var questionValue = 600; // will be updated to match difficulty
+var questionValue = 0; // will be updated to match difficulty
 var newValue = 0;
 var qButton = document.getElementsByClassName("question-button")[0];
 var buttonText = ["Ready...", "Set...", "Go!"];
@@ -69,15 +70,31 @@ function showQuestion() {
     var catKeys = Object.keys(quizArray.quiz[randCat]);
     var randQ = catKeys[Math.floor(Math.random() * catKeys.length)];
 //    question = quizArray.quiz[randCat][randQ]; // global so I can show answer in different function
-    question = quizArray2.results[upNext]; 
+    question = quizArray2.results[upNext];
+    switch (question.difficulty) {
+        case "easy":
+            questionValue = 400;
+            break;
+        case "medium":
+            questionValue = 600;
+            break;
+        case "hard":
+            questionValue = 1000;
+            break;
+        default:
+            questionValue = 200; //should never be this but...
+    }
     upNext++;
-    if (upNext == quizArray2.length) {
+    if (upNext == quizArray2.results.length) {
         upNext = 0; // just loop for now. Go get more questions eventually
         // in fact, this should be a while loop like a normal game
     }
     document.getElementById("question").innerHTML = "";
     document.getElementById("category").innerHTML = 
         "Category: " + question.category;
+    document.querySelector("#answer").innerHTML = "Answer:";
+    document.getElementsByClassName("correct-value")[0].innerHTML = questionValue;
+
     ctx.clearRect(0,0,canvas.width,canvas.height);
     qButton.innerHTML = buttonText[0];
     var y = 0;
@@ -113,10 +130,18 @@ function valueCountdown() {
 }
 
 function showAnswer() {
-    var qAns = question.answer;
+/*    var qAns = question.answer;
     document.getElementById("answer").innerHTML = qAns;
     var tempOne = document.getElementById("option1");
     var labelOne = tempOne.labels[0].innerHTML;
+*/
+    if (showingAnswer === true) {
+        document.querySelector("#answer").classList.remove("show");
+        showingAnswer = false;
+    } else {
+        document.querySelector("#answer").classList.add("show");
+        showingAnswer = true;
+    }
 }
 
 function countdownButton() {
@@ -153,10 +178,9 @@ function displayQuestion(nextQuestion) {
             "</p>"
     }
     document.querySelector("#options").className="show";
-    document.getElementsByClassName("correct-value")[0].innerHTML = questionValue;
     document.getElementById("question").innerHTML = qQuest;
     document.getElementById("options").innerHTML = strOptions;
-    document.getElementById("answer").innerHTML = "";
+    document.getElementById("answer").innerHTML = "Answer: " + question.correct_answer;
 }
 
 function getAnswer(answer) {
