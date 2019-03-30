@@ -4,44 +4,26 @@
 * { margin: 0; box-sizing: border-box; } 
 
 body { 
-    font-size: 16px; 
-    line-height: 32px;
-    font-family: sans-serif;
-    color: black;
-    max-width: 850px;
-}
-
-h1 {
-    font-family: sans-serif;
-    font-size: 2.0rem;
-    color: black;
-}
-
-h2 {
-/*    font-size: 1.5rem; */
-    font-size: 1.5rem;
-    text-align: center;
-    border-bottom: 1px solid #bbb;
+  font-size: 16px; 
+  line-height: 32px;
+  font-family: sans-serif;
+  color: black;
+  max-width: 850px;
 }
 
 main {
-    margin-left: 50px;
+    margin-left: 10px;
+    margin-right: 5px;
     margin-top: 90px;
 }
 
-footer {
-    margin: 1.25rem auto;
-    padding: .5rem;
-    max-width: 850px;
-}
-
 .header {
-    background-color: #fff;
-    box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
-    position: fixed;
-    top:0;
-    width: 100%;
-    z-index: 3;
+  background-color: #fff;
+  box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
+  position: fixed;
+  top:0;
+  width: 100%;
+  z-index: 3;
   }
   
   .header ul {
@@ -148,57 +130,39 @@ footer {
     top: 0;
   }
   
-  /* 48em = 768px */
-  
-  @media (min-width: 48em) {
-    .header li {
-      float: left;
-    }
-    .header li a {
-      padding: 20px 30px;
-    }
-    .header .menu {
-      clear: none;
-      float: right;
-      max-height: none;
-    }
-    .header .menu-icon {
-      display: none;
-    }
-  }
-
 @keyframes flash {
-    0% { opacity: 1; } 
-    50% { opacity: .1; }
-	100% { opacity: 1; }
+  0% { opacity: 1; } 
+  50% { opacity: .1; }
+  100% { opacity: 1; }
 }
 
 .lightning {
-    animation-name: flash;
-    animation-duration: .7s;
-    animation-delay: 2s;
-    animation-iteration-count: 40;
-    animation-play-state: running;
-    position: relative;
-    height: 100px;
+  animation-name: flash;
+  animation-duration: .7s;
+  animation-delay: 2s;
+  animation-iteration-count: 40;
+  animation-play-state: running;
+  position: relative;
+  height: 100px;
 }
 
 .game-banner {
-    font-family: 'Bangers', cursive;
-    font-size: 50px;
-    display: flex;
+  font-family: 'Bangers', cursive;
+  font-size: 50px;
+  line-height: .8em;
+  display: flex;
 }
 
 .question-score {
-    font-family: 'Bangers', cursive;
-    font-size: 30px;
-    display: grid;
+  font-family: 'Bangers', cursive;
+  font-size: 30px;
+  display: grid;
 }
 
 .game-small {
   font-size: 25px;
-  grid-column-start: 2;
-  grid-column-end: 4;
+  line-height: 1em;
+  margin-left: 5px;
 }
 
 .correct-title {
@@ -222,15 +186,17 @@ footer {
 }
 
 .question-button {
-    width: 200px;
-    border-radius: 8px;
-    font-size:25px;
-    text-align: center;
+  width: 100px;
+  border-radius: 5px;
+  background-color: lightgray;
+  box-shadow: 2px 4px#888888;
+  text-align: center;
+  font-size: 15px;
 }
 
 .question-button.fadeInOut {
-    animation-name: fadeInOut;
-    animation-duration: 2s;
+  animation-name: fadeInOut;
+  animation-duration: 2s;
 }
 
 #options.show {
@@ -256,76 +222,103 @@ canvas {
   position: absolute;
   /* border: 1px solid black; */
 }
+canvas.showBorder {
+  border: 1px solid black;
+}
+
+/* 48em = 768px */
+  
+@media (min-width: 48em) {
+  .header li {
+    float: left;
+  }
+  .header li a {
+    padding: 20px 30px;
+  }
+  .header .menu {
+    clear: none;
+    float: right;
+    max-height: none;
+  }
+  .header .menu-icon {
+    display: none;
+  }
+
+  .question-button {
+    width: 180px;
+    border-radius: 8px;
+    background-color: lightgray;
+    box-shadow: 3px 5px #888888;
+    font-size:20px;
+    text-align: center;
+  }     
+}
 
 @keyframes fadeInOut {
-    0% {
-      opacity: 0;
-    }
-  
-    45% {
-      opacity: 1;
-    }
-  
-    100% {
-      opacity: 0%;
-    }
+  0% {
+    opacity: 0;
   }
+
+  45% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0%;
+  }
+}
 
 [type="radio"]:checked,
 [type="radio"]:not(:checked) {
-    position: absolute;
-    left: -9999px;
+  position: absolute;
+  left: -9999px;
 }
 
 [type="radio"]:checked + label,
 [type="radio"]:not(:checked) + label
 {
-    position: relative;
-    padding-left: 28px;
-    cursor: pointer;
-    line-height: 20px;
-    display: inline-block;
-    color: #666;
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #666;
 }
 
 [type="radio"]:checked + label:before,
 [type="radio"]:not(:checked) + label:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 18px;
-    height: 18px;
-    border: 1px solid #ddd;
-    border-radius: 100%;
-    background: #fff;
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ddd;
+  border-radius: 100%;
+  background: #fff;
 }
 
 [type="radio"]:checked + label:after,
 [type="radio"]:not(:checked) + label:after {
-    content: '';
-    width: 12px;
-    height: 12px;
-    background: #F87DA9;
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    border-radius: 100%;
-    transition: all 0.2s ease;
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: #F87DA9;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  border-radius: 100%;
+  transition: all 0.2s ease;
 }
 
 [type="radio"]:not(:checked) + label:after {
-    opacity: 0;
-    transform: scale(0);
+  opacity: 0;
+  transform: scale(0);
 }
 
 [type="radio"]:checked + label:after {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.style1 {
-    margin: 0 auto; border: 1px solid #bbb; padding: 5px; background-color: #eee; line-height: 1.5em;
+  opacity: 1;
+  transform: scale(1);
 }
 
 .extras-container {
@@ -352,19 +345,19 @@ canvas {
 }
 
 .developer-menu a {
-  background-color: #eee; /* Grey background color */
-  color: black; /* Black text color */
+  background-color: #eee;
+  color: black;
   display: block; /* Make the links appear below each other */
-  padding: 12px; /* Add some padding */
-  text-decoration: none; /* Remove underline from links */
+  padding: 12px;
+  text-decoration: none;
 }
 
 .developer-menu a:hover {
-  background-color: #ccc; /* Dark grey background on mouse-over */
+  background-color: #ccc;
 }
 
 .developer-menu a.active {
-  background-color: #4CAF50; /* Add a green color to the "active/current" link */
+  background-color: #4CAF50;
   color: white;
 }
 .about {

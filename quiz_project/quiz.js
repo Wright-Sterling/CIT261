@@ -263,3 +263,11 @@ function showRules() {
 function clearStorage() {
     localStorage.clear();
 }
+
+function showBorder() {
+    if(canvas.classList.contains("showBorder")) {
+        canvas.classList.remove("showBorder");
+    }else {
+    canvas.classList.add("showBorder");
+    }
+}
