@@ -166,13 +166,6 @@ footer {
       display: none;
     }
   }
-  
-footer, footer a {
-    text-align: center;
-    background-color: darkslategray;
-    color: whitesmoke;
-    font-size: 0.75rem;
-}
 
 @keyframes flash {
     0% { opacity: 1; } 
@@ -335,14 +328,20 @@ canvas {
     margin: 0 auto; border: 1px solid #bbb; padding: 5px; background-color: #eee; line-height: 1.5em;
 }
 
+.extras-container {
+  display: flex;
+}
+
+.with-space {
+  margin-top: 1.2em
+}
+
 .developer, .about, .settings, .rules {
   display: none;
-  position: absolute;
-  float: right;
-/*  width: 100%; */
-/*  margin-left: 20px; */
-  right: 20px;
-  text-align: right;
+  position: relative;
+  margin-top: 40px;
+  margin-left: 20px;
+  line-height: 1.3em;
 }
 .developer.show {
   display: block;
@@ -350,7 +349,6 @@ canvas {
 
 .developer-menu {
   width: 200px;
-  text-align: right;
 }
 
 .developer-menu a {
@@ -373,7 +371,7 @@ canvas {
   display: none;
 }
 .about.show {
-  display: flex;
+  display: block;
 }
 
 /* removed settings option due to lack of time
@@ -389,5 +387,5 @@ canvas {
   display: none;
 }
 .rules.show {
-  display: flex;
+  display: block;
 }

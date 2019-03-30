@@ -50,18 +50,47 @@
             </form>
             <div id="feedback"></div>
         </main>
-        <section class="developer">
-            <h3>Developer</h3>
-            <div class="developer-menu">
-                <a href="#" onclick="showAnswer()">Show answer</a>
-                <a href="#" onclick="clearStorage()">Clear local storage</a>
-                <a href="#">Option 3</a>
-                <a href="#">Option 4</a>
-            </div>
-        </section>
-        <section class="about"><h3>About</h3></section>
-        <section class="settings"><h3>Settings</h3></section>
-        <section class="rules"><h3>Rules</h3></section>
+        <div class="extras-container">
+            <section class="developer">
+                <h3>Developer</h3>
+                <div class="developer-menu">
+                    <a href="#" onclick="showAnswer()">Show answer</a>
+                    <a href="#" onclick="clearStorage()">Clear local storage</a>
+                </div>
+            </section>
+            <section class="about"><h3>About</h3>
+                    This game demonstrates familiarity with CSS3, HTML5, and JavaScript. The menu 
+                    at the top of the page is built as an unordered list and animated using CSS. The 
+                    @media section causes the default, CSS-only hamburger menu to give way to a 
+                    standard horizontal menu.
+                <p class="with-space"> The lightning bolt is animated using @keyframes and limited to 40 cycles so as 
+                    to not be too distracting to the player. It sits in flex container along with the 
+                    game title and running score. The running score is a global variable that is also saved to local 
+                    storage.
+                </p>
+                <p class="with-space">
+                    The text within the question button is modified by JavaScript but animated using CSS. The JavaScript 
+                    code uses setTimeout() with different values to generate the countdown effect. Once the last timeout 
+                    expires, JavaScript builds the HTML for the radio group within a locally-processed form. Interaction 
+                    with the form is enhanced by CSS animation effects. An HTML5 canvas sits on top of the form, 
+                    providing feedback to the player as a CSS transition causes the form to fade behind it.
+                </p>
+                <p class="with-space">
+                    Questions come from a web service and are delivered in JSON format. After parsing, the difficulty 
+                    field is used to set the value of the question. The correct answer is added to the array containing 
+                    incorrect answers and a JavaScript function shuffles the array before using it to build the form.
+                </p>
+            </section>
+            <section class="rules"><h3>Rules</h3>
+                Start a session by pressing the "Show a Question" button. You'll be shown
+                the category and the value of the question. Harder questions are worth more.
+                After the countdown, you'll see the question and possible answers. The sooner 
+                you answer, the more points you'll get if you are right. Be careful, though, 
+                because you will also lose more points if you guess wrong. Answer as many 
+                questions as you want and come back any time. Your running score is saved even 
+                if you quit the browser (as long as you aren't in private mode). Have fun!
+            </section>
+        </div>
         <script src="quiz.js"></script>
     </body>
 </html>
