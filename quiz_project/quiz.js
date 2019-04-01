@@ -93,7 +93,15 @@ function showQuestion() {
     document.getElementById("category").innerHTML = 
         "Category: " + question.category;
     document.querySelector("#answer").innerHTML = "Answer:";
-    document.getElementsByClassName("correct-value")[0].innerHTML = questionValue;
+    document.querySelector(".correct-value").innerHTML = questionValue;
+    //document.getElementsByClassName("correct-value")[0].innerHTML = questionValue;
+    //qValue.innerHTML = questionValue;
+    document.querySelector(".correct-title").classList.add("pulse");
+    //qValue.classList.remove = "pulse";
+    document.querySelector(".correct-value").classList.add("pulse");
+    //qValue.style.animation = "pulse 2s linear 0s 10 forward";
+    //qValue.style.color = "blue";
+    
 
     ctx.clearRect(0,0,canvas.width,canvas.height);
     qButton.innerHTML = buttonText[0];
@@ -144,7 +152,7 @@ function showAnswer() {
     }
 }
 
-function countdownButton() {
+/*function countdownButton() {
     qButton.addEventListener("animationend", nextText);
     qButton.innerHTML = buttonText[textPointer];
     qButton.classList.add('fadeInOut');
@@ -160,7 +168,7 @@ function nextText() {
         displayQuestion();
     }
 }
-
+*/
 function displayQuestion(nextQuestion) {
     var strOptions = ""
     var qQuest = question.question;

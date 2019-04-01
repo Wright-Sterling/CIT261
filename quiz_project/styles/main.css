@@ -136,6 +136,34 @@ main {
   100% { opacity: 1; }
 }
 
+@keyframes pulse1 {
+  0% {
+    font-size: 100%;
+  }
+
+  45% {
+    font-size: 150%;
+  }
+
+  100% {
+    font-size: 100%;
+  }
+}
+
+@keyframes pulse2 {
+  0% {
+    font-size: 100%;
+  }
+
+  45% {
+    font-size: 120%;
+  }
+
+  100% {
+    font-size: 100%;
+  }
+}
+
 .lightning {
   animation-name: flash;
   animation-duration: .7s;
@@ -153,21 +181,29 @@ main {
   display: flex;
 }
 
+.game-small {
+  font-size: 25px;
+  line-height: 1em;
+  margin-left: 15px;
+}
+
 .question-score {
   font-family: 'Bangers', cursive;
   font-size: 30px;
   display: grid;
-}
-
-.game-small {
-  font-size: 25px;
-  line-height: 1em;
-  margin-left: 5px;
+  justify-content: start;
 }
 
 .correct-title {
   font-size: 20px;
+  margin-left: 15px;
   grid-column: 2;
+}
+
+.correct-title.pulse {
+  animation-name: pulse1;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
 }
 
 .incorrect-title {
@@ -177,13 +213,40 @@ main {
 
 .correct-value {
   font-size: 20px;
+  margin-left: 15px;
   grid-column: 2;
+}
+
+.correct-value.pulse {
+  animation-name: pulse2;
+  animation-delay: .5s;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
 }
 
 .incorrect-value {
   font-size: 20px;
   grid-column: 3;
 }
+
+/*
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    width: 100px;
+  }
+
+  45% {
+    opacity: 1;
+    width: 110px;
+  }
+
+  100% {
+    opacity: 0%;
+    width: 100px;
+  }
+}
+*/
 
 .question-button {
   width: 100px;
@@ -194,10 +257,12 @@ main {
   font-size: 15px;
 }
 
+/*
 .question-button.fadeInOut {
   animation-name: fadeInOut;
   animation-duration: 2s;
 }
+*/
 
 #options.show {
   visibility: visible;
@@ -252,20 +317,6 @@ canvas.showBorder {
     font-size:20px;
     text-align: center;
   }     
-}
-
-@keyframes fadeInOut {
-  0% {
-    opacity: 0;
-  }
-
-  45% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0%;
-  }
 }
 
 [type="radio"]:checked,
