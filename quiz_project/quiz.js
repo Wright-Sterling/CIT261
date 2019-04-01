@@ -1,11 +1,7 @@
 var xmlhttp = new XMLHttpRequest();
-var xmlhttp2 = new XMLHttpRequest();
-var url = "quiz.json";
-//var url2 = "https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple";
-var url2 = "https://opentdb.com/api.php?amount=10";
+var url = "https://opentdb.com/api.php?amount=10";
 var supportLocalStorage = true;
 var quizArray = "";
-var quizArray2 = "";
 var upNext = 0;
 var question = "";
 var shuffledOptions = "";
@@ -34,14 +30,6 @@ function init() {
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 
-    xmlhttp2.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            quizArray2 = JSON.parse(this.responseText);
-        }
-    };
-    xmlhttp2.open("GET", url2, true);
-    xmlhttp2.send();
-
     if (typeof (Storage) === "undefined") {
         alert("Your browser does not support local storage. Your score will not persist between sessions.");
         supportLocalStorage = false;
@@ -64,13 +52,7 @@ function updateRunningScore() {
 }
 
 function showQuestion() {
-    var quizKeys = Object.keys(quizArray.quiz);
-    var quizKeys2 = Object.keys(quizArray2.results);
-    var randCat = quizKeys[Math.floor(Math.random() * quizKeys.length)];
-    var catKeys = Object.keys(quizArray.quiz[randCat]);
-    var randQ = catKeys[Math.floor(Math.random() * catKeys.length)];
-//    question = quizArray.quiz[randCat][randQ]; // global so I can show answer in different function
-    question = quizArray2.results[upNext];
+    question = quizArray.results[upNext];
     switch (question.difficulty) {
         case "easy":
             questionValue = 400;
@@ -85,7 +67,7 @@ function showQuestion() {
             questionValue = 200; //should never be this but...
     }
     upNext++;
-    if (upNext == quizArray2.results.length) {
+    if (upNext == quizArray.results.length) {
         upNext = 0; // just loop for now. Go get more questions eventually
         // in fact, this should be a while loop like a normal game
     }
@@ -94,14 +76,8 @@ function showQuestion() {
         "Category: " + question.category;
     document.querySelector("#answer").innerHTML = "Answer:";
     document.querySelector(".correct-value").innerHTML = questionValue;
-    //document.getElementsByClassName("correct-value")[0].innerHTML = questionValue;
-    //qValue.innerHTML = questionValue;
     document.querySelector(".correct-title").classList.add("pulse");
-    //qValue.classList.remove = "pulse";
     document.querySelector(".correct-value").classList.add("pulse");
-    //qValue.style.animation = "pulse 2s linear 0s 10 forward";
-    //qValue.style.color = "blue";
-    
 
     ctx.clearRect(0,0,canvas.width,canvas.height);
     qButton.innerHTML = buttonText[0];
@@ -112,13 +88,16 @@ function showQuestion() {
 }
 
 function myTimeout1() {
-qButton.innerHTML = buttonText[1];
+    qButton.innerHTML = buttonText[1];
 }
 function myTimeout2() {
-qButton.innerHTML = buttonText[2];
+    qButton.innerHTML = buttonText[2];
 }
 function myTimeout3() {
-displayQuestion(question);
+    displayQuestion(question);
+    /* This is a good place to remove the animation class so the effect will work next time */
+    document.querySelector(".correct-title").classList.remove("pulse");
+    document.querySelector(".correct-value").classList.remove("pulse");
 }
 
 function valueCountdown() {
@@ -138,11 +117,6 @@ function valueCountdown() {
 }
 
 function showAnswer() {
-/*    var qAns = question.answer;
-    document.getElementById("answer").innerHTML = qAns;
-    var tempOne = document.getElementById("option1");
-    var labelOne = tempOne.labels[0].innerHTML;
-*/
     if (showingAnswer === true) {
         document.querySelector("#answer").classList.remove("show");
         showingAnswer = false;
@@ -152,23 +126,6 @@ function showAnswer() {
     }
 }
 
-/*function countdownButton() {
-    qButton.addEventListener("animationend", nextText);
-    qButton.innerHTML = buttonText[textPointer];
-    qButton.classList.add('fadeInOut');
-}
-
-function nextText() {
-    console.log(textPointer);
-    qButton.classList.remove('fadeInOut');
-    textPointer++;
-    if (textPointer < buttonTexts) {
-        countdownButton();
-    } else {
-        displayQuestion();
-    }
-}
-*/
 function displayQuestion(nextQuestion) {
     var strOptions = ""
     var qQuest = question.question;
@@ -214,13 +171,11 @@ function getAnswer(answer) {
     ctx.textAlign = "center";
     if (shuffledOptions[numAnswer] == question.correct_answer) {
         selectedLabel.style.color = "green";
-//        feedbackText.innerHTML = "CORRECT!";
         ctx.fillStyle = "green";
         ctx.fillText("CORRECT!", canvas.width/2, canvas.height/2);
         runningScore += newValue;
     } else {
         selectedLabel.style.color = "red";
-//        feedbackText.innerHTML = "INCORRECT!";
         ctx.fillStyle = "red";
         ctx.fillText("INCORRECT!", canvas.width/2, canvas.height/2);
         runningScore -= questionValue - newValue;

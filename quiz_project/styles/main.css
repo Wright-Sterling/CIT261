@@ -198,7 +198,7 @@ main {
 }
 
 .correct-title.pulse {
-  animation-name: pulse1;
+  animation-name: pulse2;
   animation-duration: 1s;
   animation-iteration-count: 1;
 }
@@ -215,7 +215,7 @@ main {
 }
 
 .correct-value.pulse {
-  animation-name: pulse2;
+  animation-name: pulse1;
   animation-delay: .5s;
   animation-duration: 1s;
   animation-iteration-count: 1;
