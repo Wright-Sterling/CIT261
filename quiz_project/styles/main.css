@@ -12,9 +12,9 @@ body {
 }
 
 main {
-    margin-left: 10px;
-    margin-right: 5px;
-    margin-top: 90px;
+  margin-left: 10px;
+  margin-right: 5px;
+  margin-top: 90px;
 }
 
 .header {
@@ -24,7 +24,7 @@ main {
   top:0;
   width: 100%;
   z-index: 3;
-  }
+}
   
   .header ul {
     margin: 0;
@@ -56,16 +56,14 @@ main {
     text-decoration: none;
   }
   
-  /* menu */
-  
+  /* menu */ 
   .header .menu {
     clear: both;
     max-height: 0;
     transition: max-height .2s ease-out;
   }
   
-  /* menu icon */
-  
+  /* menu icon */ 
   .header .menu-icon {
     cursor: pointer;
     display: inline-block;
@@ -103,8 +101,7 @@ main {
     top: -5px;
   }
   
-  /* menu btn */
-  
+  /* menu btn */ 
   .header .menu-btn {
     display: none;
   }
@@ -229,25 +226,6 @@ main {
   grid-column: 3;
 }
 
-/*
-@keyframes fadeInOut {
-  0% {
-    opacity: 0;
-    width: 100px;
-  }
-
-  45% {
-    opacity: 1;
-    width: 110px;
-  }
-
-  100% {
-    opacity: 0%;
-    width: 100px;
-  }
-}
-*/
-
 .question-button {
   width: 100px;
   border-radius: 5px;
@@ -256,13 +234,6 @@ main {
   text-align: center;
   font-size: 15px;
 }
-
-/*
-.question-button.fadeInOut {
-  animation-name: fadeInOut;
-  animation-duration: 2s;
-}
-*/
 
 #options.show {
   visibility: visible;
@@ -285,14 +256,12 @@ main {
 
 canvas {
   position: absolute;
-  /* border: 1px solid black; */
 }
 canvas.showBorder {
   border: 1px solid black;
 }
 
 /* 48em = 768px */
-  
 @media (min-width: 48em) {
   .header li {
     float: left;
@@ -354,7 +323,7 @@ canvas.showBorder {
   content: '';
   width: 12px;
   height: 12px;
-  background: #F87DA9;
+  background: rgb(105, 105, 105);
   position: absolute;
   top: 4px;
   left: 4px;
