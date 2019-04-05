@@ -24,7 +24,8 @@ updateRunningScore();
 function init() {
     xmlhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            quizArray = JSON.parse(this.responseText);
+            quizJson = JSON.parse(this.responseText);
+            quizArray = makeQuizObjects(quizJson);
         }
     };
     xmlhttp.open("GET", url, true);
@@ -43,6 +44,29 @@ function init() {
     }
 }
 
+function makeQuizObjects(jsonArray) {
+    newArray=[];
+    for(i=0;i<jsonArray.results.length;i++) {
+        var current = jsonArray.results[i];
+        switch (current.difficulty) {
+            case "easy":
+                questionValue = 400;
+                break;
+            case "medium":
+                questionValue = 600;
+                break;
+            case "hard":
+                questionValue = 1000;
+                break;
+            default:
+                questionValue = 200; //should never be this but...
+        }
+        current.value= questionValue;
+        newArray.push(current);
+    }
+    return newArray;
+}
+
 function updateRunningScore() {
     if (runningScore <0) runningScore = 0;
     document.querySelector("#running-score").innerHTML = runningScore;
@@ -52,22 +76,9 @@ function updateRunningScore() {
 }
 
 function showQuestion() {
-    question = quizArray.results[upNext];
-    switch (question.difficulty) {
-        case "easy":
-            questionValue = 400;
-            break;
-        case "medium":
-            questionValue = 600;
-            break;
-        case "hard":
-            questionValue = 1000;
-            break;
-        default:
-            questionValue = 200; //should never be this but...
-    }
+    question = quizArray[upNext];
     upNext++;
-    if (upNext == quizArray.results.length) {
+    if (upNext == quizArray.length) {
         upNext = 0; // just loop for now. Go get more questions eventually
         // in fact, this should be a while loop like a normal game
     }
@@ -75,7 +86,7 @@ function showQuestion() {
     document.getElementById("category").innerHTML = 
         "Category: " + question.category;
     document.querySelector("#answer").innerHTML = "Answer:";
-    document.querySelector(".correct-value").innerHTML = questionValue;
+    document.querySelector(".correct-value").innerHTML = question.value;
     document.querySelector(".correct-title").classList.add("pulse");
     document.querySelector(".correct-value").classList.add("pulse");
 
@@ -219,7 +230,7 @@ function showRules() {
     if(sec.classList.contains("show")) {
         sec.classList.remove ("show");
     } else {
-        sec.classList.add ("hide");
+        sec.classList.add ("show");
     }
 }
 
