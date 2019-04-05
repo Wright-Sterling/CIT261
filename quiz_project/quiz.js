@@ -45,7 +45,7 @@ function init() {
 }
 
 function makeQuizObjects(jsonArray) {
-    newArray=[];
+    var newArray=[];
     for(i=0;i<jsonArray.results.length;i++) {
         var current = jsonArray.results[i];
         switch (current.difficulty) {
@@ -62,6 +62,21 @@ function makeQuizObjects(jsonArray) {
                 questionValue = 200; //should never be this but...
         }
         current.value= questionValue;
+        current.options = function() {
+            var qOpts = this.incorrect_answers;
+            qOpts.push(this.correct_answer);
+            shuffledOptions = qOpts.sort(function(a, b){return 0.5 - Math.random()}); // shuffle array
+            var strOptions = "";
+            for (i = 0; i < qOpts.length; i++) {
+                var strOptions = strOptions +
+                    "<p>"+
+                        "<input type='radio' id='option"+i+"' name='radio-group'"+
+                        "onclick='getAnswer(this.id)'>"+
+                        "<label for='option"+i+"'>"+qOpts[i]+"</label>"+
+                    "</p>"
+            }
+            return strOptions;
+        }
         newArray.push(current);
     }
     return newArray;
@@ -138,24 +153,11 @@ function showAnswer() {
 }
 
 function displayQuestion(nextQuestion) {
-    var strOptions = ""
     var qQuest = question.question;
-    var qOpts = question.incorrect_answers;
-    qOpts.push(question.correct_answer);
-    shuffledOptions = qOpts.sort(function(a, b){return 0.5 - Math.random()}); // shuffle array
-
     valueCountdown();
-    for (i = 0; i < qOpts.length; i++) {
-        var strOptions = strOptions +
-            "<p>"+
-                "<input type='radio' id='option"+i+"' name='radio-group'"+
-                "onclick='getAnswer(this.id)'>"+
-                "<label for='option"+i+"'>"+qOpts[i]+"</label>"+
-            "</p>"
-    }
     document.querySelector("#options").className="show";
     document.getElementById("question").innerHTML = qQuest;
-    document.getElementById("options").innerHTML = strOptions;
+    document.getElementById("options").innerHTML = question.options();
     document.getElementById("answer").innerHTML = "Answer: " + question.correct_answer;
 }
 
