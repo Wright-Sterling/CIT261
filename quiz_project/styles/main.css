@@ -1,4 +1,4 @@
-/* CIT 261 - Assignment Portal CSS Template */
+/* CIT 261 - CSS Template */
 
 /* * is a wildcard referring to all elements. */
 * { margin: 0; box-sizing: border-box; } 
@@ -380,6 +380,7 @@ canvas.showBorder {
   background-color: #4CAF50;
   color: white;
 }
+
 .about {
   display: none;
 }

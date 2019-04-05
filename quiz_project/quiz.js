@@ -1,5 +1,5 @@
 var xmlhttp = new XMLHttpRequest();
-var url = "https://opentdb.com/api.php?amount=10";
+var url = "https://opentdb.com/api.php?amount=20";
 var supportLocalStorage = true;
 var quizArray = "";
 var upNext = 0;
@@ -217,9 +217,9 @@ function showSettings() {
 function showRules() {
     var sec=document.querySelector(".rules");
     if(sec.classList.contains("show")) {
-        sec.classList.remove("show");
+        sec.classList.remove ("show");
     } else {
-        sec.classList.add("show");
+        sec.classList.add ("hide");
     }
 }
 
