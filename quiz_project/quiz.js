@@ -6,11 +6,11 @@ var upNext = 0;
 var question = "";
 var shuffledOptions = "";
 var correctAnswer = "";
-var showingAnswer = false;
+var showingAnswer = false; // used for developer mode
 var runningScore = 0; // store and retrieve from local storage
 var questionValue = 0; // will be updated to match difficulty
 var newValue = 0;
-var qButton = document.getElementsByClassName("question-button")[0];
+var qButton = document.querySelector(".question-button");
 var buttonText = ["Ready...", "Set...", "Go!"];
 var buttonTexts = buttonText.length;
 var textPointer = 0;
@@ -45,7 +45,7 @@ function init() {
 }
 
 function makeQuizObjects(jsonArray) {
-    var newArray=[];
+    var newArray=[]; // This will hold the augmented question objects
     for(i=0;i<jsonArray.results.length;i++) {
         var current = jsonArray.results[i];
         switch (current.difficulty) {
@@ -97,8 +97,8 @@ function showQuestion() {
         upNext = 0; // just loop for now. Go get more questions eventually
         // in fact, this should be a while loop like a normal game
     }
-    document.getElementById("question").innerHTML = "";
-    document.getElementById("category").innerHTML = 
+    document.querySelector("#question").innerHTML = "";
+    document.querySelector("#category").innerHTML = 
         "Category: " + question.category;
     document.querySelector("#answer").innerHTML = "Answer:";
     document.querySelector(".correct-value").innerHTML = question.value;
@@ -129,8 +129,8 @@ function myTimeout3() {
 function valueCountdown() {
     newValue = questionValue;
     downloadTimer = setInterval(function(){
-        var correctValueElement = document.getElementsByClassName("correct-value")[0];
-        var incorrectValueElement = document.getElementsByClassName("incorrect-value")[0];
+        var correctValueElement = document.querySelector(".correct-value");
+        var incorrectValueElement = document.querySelector(".incorrect-value");
         newValue -= 50;
         correctValueElement.innerHTML = newValue;
         incorrectValueElement.innerHTML = (questionValue - newValue) * -1;
@@ -156,15 +156,15 @@ function displayQuestion(nextQuestion) {
     var qQuest = question.question;
     valueCountdown();
     document.querySelector("#options").className="show";
-    document.getElementById("question").innerHTML = qQuest;
-    document.getElementById("options").innerHTML = question.options();
-    document.getElementById("answer").innerHTML = "Answer: " + question.correct_answer;
+    document.querySelector("#question").innerHTML = qQuest;
+    document.querySelector("#options").innerHTML = question.options();
+    document.querySelector("#answer").innerHTML = "Answer: " + question.correct_answer;
 }
 
 function getAnswer(answer) {
     clearInterval(downloadTimer);
     var numAnswer = answer.slice(6);
-    var selectedButton = document.getElementById(answer);
+    var selectedButton = document.querySelector("#answer");
     var selectedLabel = document.querySelector("label[for=option"+numAnswer+"]");
     var feedbackText = document.querySelector("#feedback");
     var optionsID = document.querySelector("#options");
